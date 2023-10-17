@@ -90,7 +90,7 @@ export default {
         // SignUp page only available only when user is not log in
         if (user) {
             this.$router.push({ name: 'Home' });
-            localStorage.clear();
+            // localStorage.clear();
         }
     }
 }

@@ -4,6 +4,8 @@ import Login from './components/Login.vue'
 import Add from './components/Add.vue'
 import Update from './components/Update.vue'
 import Forgot from './components/Forgot.vue'
+import Admin from './components/Admin.vue'
+import AdminLogin from './components/AdminLogin.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -42,6 +44,18 @@ const routes = [
         name: 'Forgot',
         component: Forgot,
         path: '/forgot'
+    },
+
+    {
+        name: 'Admin',
+        component: Admin,
+        path: '/admin'
+    },
+
+    {
+        name: 'AdminLogin',
+        component: AdminLogin,
+        path: '/admin/login'
     }
 ];
 

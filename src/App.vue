@@ -38,7 +38,7 @@ body {
 
 } */
 
-.register input, .login input, .add input, .forgot input {
+.register input, .login input, .add input, .forgot input, .admin input {
     width: 300px;
     height: 40px;
     padding-left: 20px;
@@ -50,7 +50,7 @@ body {
     border-radius: 10px;
 }
 
-.register button, .login button, .add button, .forgot button {
+.register button, .login button, .add button, .forgot button, .admin button {
     width: 320px;
     height: 40px;
     border: 1px solid lightgray;
