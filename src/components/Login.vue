@@ -1,7 +1,7 @@
 <template>
     <img class="logo" src="../assets/book-logo.png">
     <h1>Login</h1>
-    <div @submit.prevent="onSubmit" class="login">
+    <div class="login">
         <!-- Email -->
         <div class="form-group" :class="{ error: v$.email.$errors.length }">
             <input placeholder="Enter your email" type="email" v-model="v$.email.$model">
@@ -18,14 +18,18 @@
             <div v-for="(error, index) of v$.password.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
-            <div v-if="!this.correctness">Incorrect password or email.</div>
+            <div class="error-msg" v-if="!this.correctness">Incorrect password or email.</div>
         </div>
 
         <!-- Submit Button -->
         <button :disabled="v$.$invalid" v-on:click="login">Login</button>
-
+        <p>
+            <router-link to="/forgot">Forgot password?</router-link>
+        </p>
         <!-- Sign Up Page -->
-        <p>Don't have an account yet?<br><router-link to="/sign-up">Create one here</router-link></p>
+        <div class="signup-login-router-link">
+            <p>Don't have an account yet? <router-link to="/sign-up">Create one here</router-link></p>
+        </div>
     </div>
 </template>
 
@@ -76,7 +80,9 @@ export default {
                 this.correctness = false;
                 //alert("Incorect password or email");
             }
+
         }
+
     },
 
     mounted() {

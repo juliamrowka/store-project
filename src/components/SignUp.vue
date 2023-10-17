@@ -1,7 +1,7 @@
 <template>
     <img class="logo" src="../assets/book-logo.png">
     <h1>Sign Up</h1>
-    <div @submit.prevent="onSubmit" class="register">
+    <div class="register">
         <!-- First Name -->
         <div class="form-group">
             <input placeholder="Enter your name" type="text" v-model="v$.name.$model">

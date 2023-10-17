@@ -34,7 +34,11 @@ body {
   margin-left: 15px;
 }
 
-.register input, .login input, .add input {
+/* .register, .login, .add {
+
+} */
+
+.register input, .login input, .add input, .forgot input {
     width: 300px;
     height: 40px;
     padding-left: 20px;
@@ -46,7 +50,7 @@ body {
     border-radius: 10px;
 }
 
-.register button, .login button, .add button {
+.register button, .login button, .add button, .forgot button {
     width: 320px;
     height: 40px;
     border: 1px solid lightgray;
@@ -90,4 +94,5 @@ td{
 .form-group {
   margin-bottom: 20px;
 }
+
 </style>

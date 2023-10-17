@@ -3,6 +3,7 @@ import SignUp from './components/SignUp.vue'
 import Login from './components/Login.vue'
 import Add from './components/Add.vue'
 import Update from './components/Update.vue'
+import Forgot from './components/Forgot.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -35,6 +36,12 @@ const routes = [
         name: 'Update',
         component: Update,
         path: '/update/:id'
+    },
+
+    {
+        name: 'Forgot',
+        component: Forgot,
+        path: '/forgot'
     }
 ];
 
