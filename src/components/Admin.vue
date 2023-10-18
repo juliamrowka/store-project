@@ -1,10 +1,16 @@
 <template>
+    <Header />
 <h1>Admin Page</h1>
 </template>
 
 <script>
+import Header from './Header.vue'
 export default {
     name: 'Admin-page',
+
+    components: {
+        Header
+    },
 
     methods: {
 

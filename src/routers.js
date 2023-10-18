@@ -6,6 +6,8 @@ import Update from './components/Update.vue'
 import Forgot from './components/Forgot.vue'
 import Admin from './components/Admin.vue'
 import AdminLogin from './components/AdminLogin.vue'
+import AdminBooks from './components/AdminBooks.vue'
+import AdminUsers from './components/AdminUsers.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -56,6 +58,18 @@ const routes = [
         name: 'AdminLogin',
         component: AdminLogin,
         path: '/admin/login'
+    },
+
+    {
+        name: 'AdminBooks',
+        component: AdminBooks,
+        path: '/admin/books'
+    },
+
+    {
+        name: 'AdminUsers',
+        component: AdminUsers,
+        path: '/admin/users'
     }
 ];
 

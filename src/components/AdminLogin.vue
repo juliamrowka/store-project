@@ -14,7 +14,7 @@
             <div v-for="(error, index) of v$.password.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
-            <div class="error-msg" v-if="!this.correct">Incorrect password or name.</div>
+            <div class="error-msg" v-if="!this.correctPassword">Incorrect password or name.</div>
         </div>
         <!-- Submit Button -->
         <button v-on:click="login">Login</button>
@@ -37,7 +37,7 @@ export default {
         return {
             name: '',
             password: '',
-            correct: 'true',
+            correctPassword: 'true',
         }
     },
 
@@ -63,10 +63,10 @@ export default {
                     localStorage.setItem("is-admin", result.data[0].isAdmin);
                     this.$router.push({ name: 'Admin' });
                 } else {
-                    this.correct = false;
+                    this.correctPassword = false;
                 }
             } else {
-                this.correct = false;
+                this.correctPassword = false;
             }
 
             // if (result.status === 200 && result.data[0].isAdmin === true) {
