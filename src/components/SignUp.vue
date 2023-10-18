@@ -2,14 +2,6 @@
     <img class="logo" src="../assets/book-logo.png">
     <h1>Sign Up</h1>
     <div class="register">
-        <!-- First Name -->
-        <div class="form-group">
-            <input placeholder="Enter your name" type="text" v-model="v$.name.$model">
-            <!-- error message -->
-            <div v-for="(error, index) of v$.name.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </div>
         <!-- Name -->
         <div class="form-group">
             <input placeholder="Enter your name" type="text" v-model="v$.name.$model">
@@ -74,6 +66,7 @@ export default {
             password: '',
             confirmPassword: '',
             errorPassword: '',
+            isAdmin: ''
         }
     },
 
@@ -98,7 +91,9 @@ export default {
                 let result = await axios.post("http://localhost:3000/users", {
                     name: this.name,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    isAdmin: false
+
                 });
 
                 console.warn(result)

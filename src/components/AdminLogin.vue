@@ -37,7 +37,7 @@ export default {
         return {
             name: '',
             password: '',
-            correct: 'true'
+            correct: 'true',
         }
     },
 
@@ -51,22 +51,38 @@ export default {
     methods: {
         async login() {
             const result = await axios.get(`http://localhost:3000/admin?name=${this.name}&password=${this.password}`);
-            console.log(result.data[0]);
-            console.log(typeof(result.data[0]));
-            if (result.status === 200 && result.data[0].name === 'admin') {
-                this.correct = true;
-                localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-                localStorage.setItem("is-admin", result.data[0].isAdmin);
-                this.$router.push({ name: 'Admin' });
+            console.log(result);
+            // console.log(typeof(result.data));
+            // console.log((result.data[0].isAdmin));
+            if (result.status === 200 && result.data.length > 0) {
+                console.log(result.status === 200 && result.data.length > 0);
+                if (result.data[0].isAdmin === true) {
+                    console.log(result.data[0].isAdmin === true);
+                    this.correct = true;
+                    localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+                    localStorage.setItem("is-admin", result.data[0].isAdmin);
+                    this.$router.push({ name: 'Admin' });
+                } else {
+                    this.correct = false;
+                }
             } else {
                 this.correct = false;
             }
+
+            // if (result.status === 200 && result.data[0].isAdmin === true) {
+            //     this.correct = true;
+            //     localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+            //     localStorage.setItem("is-admin", result.data[0].isAdmin);
+            //     this.$router.push({ name: 'Admin' });
+            // } else {
+            //     this.correct = false;
+            // }
         }
     },
 
     mounted() {
-        let user = localStorage.getItem('is-admin');
-        if (user) {
+        let admin = localStorage.getItem('is-admin');
+        if (admin === 'true') {
             this.$router.push({ name: 'Admin' });
         }
     }
