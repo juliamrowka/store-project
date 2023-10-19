@@ -66,7 +66,8 @@ export default {
             password: '',
             confirmPassword: '',
             errorPassword: '',
-            role: ''
+            role: '',
+            blocked: ''
         }
     },
 
@@ -92,15 +93,16 @@ export default {
                     name: this.name,
                     email: this.email,
                     password: this.password,
-                    role: "customer"
+                    role: "customer",
+                    blocked: false
 
                 });
 
-                console.warn(result)
+                // console.warn(result);
                 if (result.status === 201) {
-                    localStorage.setItem("user-info", JSON.stringify(result.data))
+                    localStorage.setItem("user-info", JSON.stringify(result.data));
                     //redirect to home page after sign up
-                    this.$router.push({ name: 'Home' }) //same name as in file routers.js
+                    this.$router.push({ name: 'Home' }); //same name as in file routers.js
                 }
             }
 

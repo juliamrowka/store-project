@@ -31,7 +31,7 @@ export default {
 
     methods: {
         async updateBook() {
-            console.warn(this.book)
+            // console.warn(this.book)
             const result = await axios.put("http://localhost:3000/books/" + this.$route.params.id, {
                 title: this.book.title,
                 author: this.book.author,
@@ -51,10 +51,9 @@ export default {
             this.name = JSON.parse(user).name; // fetch name of user 
             const result = await axios.get('http://localhost:3000/books/' + this.$route.params.id);
             //console.warn(this.$route.params.id);
-            console.warn('result', result.data);
+            // console.warn('result', result.data);
             this.book = result.data; //prefill data
         }
-
     }
 }
 </script>

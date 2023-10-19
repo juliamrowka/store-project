@@ -42,7 +42,7 @@ export default {
     methods: {
         async deleteBook(id) {
             let result = await axios.delete("http://localhost:3000/books/" + id);
-            console.warn(result);
+            // console.warn(result);
             if (result.status === 200) {
                 this.loadData();
             }

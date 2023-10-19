@@ -37,7 +37,7 @@ export default {
         return {
             email: '',
             password: '',
-            correctPassword: 'true',
+            correctPassword: true,
         }
     },
 
@@ -58,7 +58,7 @@ export default {
                 console.log(result.status === 200 && result.data.length > 0);
                 if (result.data[0].role === "admin") {
                     console.log(result.data[0].role === "admin");
-                    this.correct = true;
+                    this.correctPassword = true;
                     localStorage.setItem("user-info", JSON.stringify(result.data[0]));
                     localStorage.setItem("role", result.data[0].role);
                     this.$router.push({ name: 'Admin' });

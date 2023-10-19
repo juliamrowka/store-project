@@ -18,8 +18,9 @@
             <div v-for="(error, index) of v$.password.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
-            <div class="error-msg" v-if="!this.correctness">Incorrect password or email.</div>
         </div>
+        <div class="error-msg" v-if="!this.correctPassword">Incorrect password or email.</div>
+        <div class="error-msg" v-if="this.blocked">You are blocked, please contact support.</div>
 
         <!-- Submit Button -->
         <button :disabled="v$.$invalid" v-on:click="login">Login</button>
@@ -48,7 +49,8 @@ export default {
         return {
             email: '',
             password: '',
-            correctness: 'true'
+            correctPassword: true,
+            blocked: false
         }
     },
 
@@ -69,20 +71,22 @@ export default {
             let result = await axios.get(
                 `http://localhost:3000/users?email=${this.email}&password=${this.password}`
             );
-            console.warn(result);
+            // console.warn(result);
 
             if (result.status == 200 && result.data.length > 0) {
-                this.correctness = true;
-                localStorage.setItem("user-info", JSON.stringify(result.data[0])); //result data in array
-                //redirect to home page after sign up
-                this.$router.push({ name: 'Home' }); //same name as in file routers.js
+                this.correctPassword = true;
+                if (result.data[0].blocked === false) {
+                    localStorage.setItem("user-info", JSON.stringify(result.data[0])); //result data in array
+                    //redirect to home page after sign up
+                    this.$router.push({ name: 'Home' }); //same name as in file routers.js
+                } else {
+                    this.blocked = true;
+                }
             } else {
-                this.correctness = false;
+                this.correctPassword = false;
                 //alert("Incorect password or email");
             }
-
         }
-
     },
 
     mounted() {

@@ -13,7 +13,8 @@
             <td>{{ item.name }}</td>
             <td>{{ item.email }}</td>
             <td>
-                <button v-on:click="blockUser">Block</button>
+                <button v-if="!item.blocked" v-on:click="blockUser(item.id)">Block</button>
+                <button v-if="item.blocked" v-on:click="unblockUser(item.id)">Unblock</button>
                 <img v-on:click="deleteUser(item.id)" src="../assets/delete.png" class="icon" alt="" title="Delete">
             </td>
         </tr>
@@ -29,7 +30,7 @@ export default {
     data() {
         return {
             name: '',
-            users: []
+            users: [],
         };
     },
 
@@ -38,10 +39,30 @@ export default {
     methods: {
         async deleteUser(id) {
             let result = await axios.delete("http://localhost:3000/users/" + id);
-            console.warn(result);
+            // console.warn(result);
             if (result.status === 200) {
                 this.loadData();
             }
+        },
+
+        async blockUser(id) {
+            const result = await axios.patch("http://localhost:3000/users/" + id, {
+                blocked: true,
+            });
+            if (result.status === 200) {
+                this.loadData();
+            }
+            // console.log(result);
+        },
+
+        async unblockUser(id) {
+            const result = await axios.patch("http://localhost:3000/users/" + id, {
+                blocked: false,
+            });
+            if (result.status === 200) {
+                this.loadData();
+            }
+            // console.log(result);
         },
 
         async loadData() {
@@ -54,6 +75,8 @@ export default {
                 this.name = JSON.parse(user).name;
                 let result = await axios.get("http://localhost:3000/users");
                 this.users = result.data;
+                this.blocked = result.data[0].blocked;
+                // console.log(result.data)
             }
         }
     },
@@ -61,7 +84,6 @@ export default {
     async mounted() {
         this.loadData();
     }
-
 }
 
 </script>
