@@ -2,9 +2,9 @@
     <h1>Admin Login Page</h1>
     <div class="admin">
         <!-- Email -->
-        <div class="form-group">
-            <input placeholder="Enter your name" type="text" v-model="v$.name.$model">
-            <div v-for="(error, index) of v$.name.$errors" :key="index">
+        <div class="form-group" :class="{ error: v$.email.$errors.length }">
+            <input placeholder="Enter your email" type="text" v-model="v$.email.$model">
+            <div v-for="(error, index) of v$.email.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
         </div>
@@ -15,6 +15,7 @@
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
             <div class="error-msg" v-if="!this.correctPassword">Incorrect password or name.</div>
+            <div class="error-msg" v-if="!this.permission">You do not have permission.</div>
         </div>
         <!-- Submit Button -->
         <button v-on:click="login">Login</button>
@@ -25,7 +26,7 @@
 <script>
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import { required, email } from '@vuelidate/validators'
 export default {
     name: 'Admin-page',
 
@@ -35,35 +36,36 @@ export default {
 
     data() {
         return {
-            name: '',
+            email: '',
             password: '',
             correctPassword: 'true',
+            permission: 'true'
         }
     },
 
     validations() {
         return {
-            name: { required },
+            email: { required, email },
             password: { required }
         }
     },
 
     methods: {
         async login() {
-            const result = await axios.get(`http://localhost:3000/admin?name=${this.name}&password=${this.password}`);
+            const result = await axios.get(`http://localhost:3000/users?email=${this.email}&password=${this.password}`);
             console.log(result);
             // console.log(typeof(result.data));
             // console.log((result.data[0].isAdmin));
             if (result.status === 200 && result.data.length > 0) {
                 console.log(result.status === 200 && result.data.length > 0);
-                if (result.data[0].isAdmin === true) {
-                    console.log(result.data[0].isAdmin === true);
+                if (result.data[0].role === "admin") {
+                    console.log(result.data[0].role === "admin");
                     this.correct = true;
                     localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-                    localStorage.setItem("is-admin", result.data[0].isAdmin);
+                    localStorage.setItem("role", result.data[0].role);
                     this.$router.push({ name: 'Admin' });
                 } else {
-                    this.correctPassword = false;
+                    this.permission = false;
                 }
             } else {
                 this.correctPassword = false;
@@ -81,8 +83,8 @@ export default {
     },
 
     mounted() {
-        let admin = localStorage.getItem('is-admin');
-        if (admin === 'true') {
+        let admin = localStorage.getItem('role');
+        if (admin === 'admin') {
             this.$router.push({ name: 'Admin' });
         }
     }

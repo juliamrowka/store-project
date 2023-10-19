@@ -66,7 +66,7 @@ export default {
             password: '',
             confirmPassword: '',
             errorPassword: '',
-            isAdmin: ''
+            role: ''
         }
     },
 
@@ -92,7 +92,7 @@ export default {
                     name: this.name,
                     email: this.email,
                     password: this.password,
-                    isAdmin: false
+                    role: "customer"
 
                 });
 

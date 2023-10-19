@@ -17,11 +17,11 @@ export default {
     },
 
     mounted() {
-        let admin = localStorage.getItem('is-admin');
+        let admin = localStorage.getItem('role');
         console.log(typeof(admin));
         console.log(admin);
         // console.log(user.search('{"name":"admin","password":"admin"}'));
-        if (admin !== 'true') {
+        if (admin !== 'admin') {
             // alert("To get access to the administrator panel, please log in.")
             this.$router.push({ name: 'AdminLogin'} );
         } 
