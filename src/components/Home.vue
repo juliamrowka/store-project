@@ -48,7 +48,7 @@ export default {
             } else {
                 this.name = JSON.parse(user).name;
             }
-            let result = await axios.get("http://localhost:3000/books");
+            let result = await axios.get("http://localhost:3000/books?published=true");
             //console.warn(result);
             this.books = result.data;
         }

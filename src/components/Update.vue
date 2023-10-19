@@ -1,5 +1,5 @@
 <template>
-    <Header />
+    <AdminHeader />
     <h1>Hello {{ name }}, Welcome on Update Book Page</h1>
     <form class="add">
         <input type="text" name="title" placeholder="Enter Title" v-model="book.title" />
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import Header from './Header.vue'
+import AdminHeader from './AdminHeader.vue';
 import axios from 'axios'
 export default {
     name: 'Update-page',
     components: {
-        Header
-    },
+    AdminHeader
+},
 
     data() {
         return {

@@ -33,13 +33,13 @@ const routes = [
     {
         name: 'Add',
         component: Add,
-        path: '/add'
+        path: '/admin/books/add'
     },
 
     {
         name: 'Update',
         component: Update,
-        path: '/update/:id'
+        path: '/admin/books/update/:id'
     },
 
     {

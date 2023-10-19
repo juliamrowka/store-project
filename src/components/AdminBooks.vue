@@ -1,7 +1,7 @@
 <template>
     <AdminHeader />
     <h1>Hello {{ name }}, Welcome on Books Page</h1>
-    <router-link to="/add">Add New Book</router-link>
+    <router-link to="/admin/books/add">Add New Book</router-link>
     <table class="books-table">
         <tr>
             <th>ID number</th>
@@ -16,7 +16,9 @@
             <td>{{ item.author }}</td>
             <td>{{ item.price }}</td>
             <td>
-                <router-link :to="'/update/' + item.id">Update</router-link>
+                <router-link :to="'/admin/books/update/' + item.id">Update</router-link>
+                <button v-if="!item.published" v-on:click="publishBook(item.id)">Publish</button>
+                <button v-if="item.published" v-on:click="unpublishBook(item.id)">Unpublish</button>
                 <img v-on:click="deleteBook(item.id)" src="../assets/delete.png" class="icon" alt="" title="Delete">
             </td>
         </tr>
@@ -46,6 +48,26 @@ export default {
             if (result.status === 200) {
                 this.loadData();
             }
+        },
+
+        async publishBook(id) {
+            const result = await axios.patch("http://localhost:3000/books/" + id, {
+                published: true,
+            });
+            if (result.status === 200) {
+                this.loadData();
+            }
+            console.log(result);
+        },
+
+        async unpublishBook(id) {
+            const result = await axios.patch("http://localhost:3000/books/" + id, {
+                published: false,
+            });
+            if (result.status === 200) {
+                this.loadData();
+            }
+            console.log(result);
         },
 
         async loadData() {
