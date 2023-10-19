@@ -1,8 +1,8 @@
 <template>
     <AdminHeader />
-    <h1>Books</h1>
+    <h1>Hello {{ name }}, Welcome on Books Page</h1>
     <router-link to="/add">Add New Book</router-link>
-    <table>
+    <table class="books-table">
         <tr>
             <th>ID number</th>
             <th>Title</th>
@@ -29,15 +29,42 @@ import AdminHeader from './AdminHeader.vue';
 // import router from '@/routers';
 export default {
     name: 'AdminBooks',
+
     data() {
         return {
+            name: '',
             books: []
         };
     },
-    async mounted() {
-        let result = await axios.get("http://localhost:3000/books");
-        this.books = result.data;
+
+    components: { AdminHeader },
+
+    methods: {
+        async deleteBook(id) {
+            let result = await axios.delete("http://localhost:3000/books/" + id);
+            console.warn(result);
+            if (result.status === 200) {
+                this.loadData();
+            }
+        },
+
+        async loadData() {
+            let role = localStorage.getItem('role');
+            let user = localStorage.getItem('user-info');
+            if (role !== 'admin') {
+                this.$router.push({ name: 'AdminLogin' });
+            }
+            else {
+                this.name = JSON.parse(user).name;
+                let result = await axios.get("http://localhost:3000/books");
+                //console.warn(result);
+                this.books = result.data;
+            }
+        }
     },
-    components: { AdminHeader }
+
+    async mounted() {
+        this.loadData();
+    }
 }
 </script>

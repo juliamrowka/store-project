@@ -95,4 +95,17 @@ td{
   margin-bottom: 20px;
 }
 
+.books-table table, .books-table th, .books-table td {
+  border: 2px solid darkgray;  
+}
+
+.books-table {
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 20px;
+  width: 70%;
+  border: 2px solid darkgray;
+  padding: 10px;
+}
+
 </style>

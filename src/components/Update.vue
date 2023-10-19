@@ -38,7 +38,7 @@ export default {
                 price: this.book.price
             });
             if (result.status === 200) {
-                this.$router.push({ name: 'Home' });
+                this.$router.push({ name: 'AdminBooks' });
             }
         }
     },
@@ -46,14 +46,15 @@ export default {
     async mounted() {
         let user = localStorage.getItem('user-info');
         if (!user) {
-            this.$router.push({ name: 'SignUp' });
+            this.$router.push({ name: 'AdminLogin' });
         } else {
             this.name = JSON.parse(user).name; // fetch name of user 
+            const result = await axios.get('http://localhost:3000/books/' + this.$route.params.id);
+            //console.warn(this.$route.params.id);
+            console.warn('result', result.data);
+            this.book = result.data; //prefill data
         }
-        const result = await axios.get('http://localhost:3000/books/' + this.$route.params.id);
-        //console.warn(this.$route.params.id);
-        console.warn('result', result.data);
-        this.book = result.data; //prefill data
+
     }
 }
 </script>

@@ -39,7 +39,7 @@ export default {
                 price: this.book.price
             });
             if (result.status === 201) {
-                this.$router.push({ name: 'Home' });
+                this.$router.push({ name: 'AdminBooks' });
             }
             console.warn("result", result);
         }
@@ -47,7 +47,6 @@ export default {
 
     mounted() {
         let user = localStorage.getItem('user-info');
-
         // Home page only available when user is log in
         if (!user) {
             this.$router.push({ name: 'SignUp' });
