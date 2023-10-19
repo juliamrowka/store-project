@@ -95,11 +95,11 @@ td{
   margin-bottom: 20px;
 }
 
-.books-table table, .books-table th, .books-table td {
+table, td, th {
   border: 2px solid darkgray;  
 }
 
-.books-table {
+.books-table, .users-table {
   border-collapse: collapse;
   margin: auto;
   margin-top: 20px;

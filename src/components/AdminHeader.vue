@@ -1,5 +1,6 @@
 <template>
     <div class="nav">
+        <router-link to="/admin"><i class="fi fi-rr-home"></i></router-link>
         <router-link to="/admin/books">Books</router-link>
         <router-link to="/admin/users">Users</router-link>
         <!--<router-link to="/update">Update Book</router-link>-->
@@ -8,16 +9,16 @@
 </template>
 
 <script>
+
 //import router from '@/routers'
 
 export default {
     name: 'AdminHeader',
     methods: {
         logout() {
-            localStorage.clear()
-            this.$router.push({ name: 'AdminLogin' })
+            localStorage.clear();
+            this.$router.push({ name: 'AdminLogin' });
         }
     },
-//    components: { router }
 }
 </script>

@@ -15,7 +15,6 @@
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
             <div class="error-msg" v-if="!this.correctPassword">Incorrect password or name.</div>
-            <div class="error-msg" v-if="!this.permission">You do not have permission.</div>
         </div>
         <!-- Submit Button -->
         <button v-on:click="login">Login</button>
@@ -39,7 +38,6 @@ export default {
             email: '',
             password: '',
             correctPassword: 'true',
-            permission: 'true'
         }
     },
 
@@ -65,7 +63,7 @@ export default {
                     localStorage.setItem("role", result.data[0].role);
                     this.$router.push({ name: 'Admin' });
                 } else {
-                    this.permission = false;
+                    this.correctPassword = false;
                 }
             } else {
                 this.correctPassword = false;
