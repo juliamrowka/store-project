@@ -16,7 +16,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
- /* margin-top: 60px; */
+  /* margin-top: 60px; */
 }
 
 body {
@@ -25,7 +25,7 @@ body {
 }
 
 .logo {
-    width: 100px;
+  width: 100px;
 }
 
 .icon {
@@ -38,52 +38,60 @@ body {
 
 } */
 
-.register input, .login input, .add input, .forgot input, .admin input {
-    width: 300px;
-    height: 40px;
-    padding-left: 20px;
-    display: block;
-    margin-bottom: 10px;
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid lightgray;
-    border-radius: 10px;
+.register input,
+.login input,
+.add input,
+.forgot input,
+.admin input {
+  width: 300px;
+  height: 40px;
+  padding-left: 20px;
+  display: block;
+  margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
 
-.register button, .login button, .add button, .forgot button, .admin button {
-    width: 320px;
-    height: 40px;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    background-color: gray;
-    color: white;
-    cursor: pointer;
+.register button,
+.login button,
+.add button,
+.forgot button,
+.admin button {
+  width: 320px;
+  height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
 }
 
 .nav {
-    background-color: #333;
-    overflow: hidden;
+  background-color: #333;
+  overflow: hidden;
 }
 
 .nav a {
-    float: left;
-    color: #f2f2f2;
-    padding: 14px 16px;
-    text-align: center;
-    font-size: 17px;
-    text-decoration: none;
-    margin-right: 5px;
+  float: left;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 17px;
+  text-decoration: none;
+  margin-right: 5px;
 }
 
 .nav a:hover {
-    background: #ddd;
-    color: #333;
+  background: #ddd;
+  color: #333;
 }
 
-td{
+td {
   width: 160px;
   height: 40px;
-  
+
 }
 
 .error-msg {
@@ -95,11 +103,14 @@ td{
   margin-bottom: 20px;
 }
 
-table, td, th {
-  border: 2px solid darkgray;  
+table,
+td,
+th {
+  border: 2px solid darkgray;
 }
 
-.books-table, .users-table {
+.books-table,
+.users-table {
   border-collapse: collapse;
   margin: auto;
   margin-top: 20px;
@@ -108,4 +119,21 @@ table, td, th {
   padding: 10px;
 }
 
-</style>
+.offer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .book {
+    padding: 2.5rem;
+    width: 200px;
+    margin: 12px;
+    /* color: #c0c0c0; */
+    background-color: rgb(218, 190, 168);
+    /* border: 1px solid gray; */
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+}</style>

@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <input @input="checkPassword()" type="password" v-model="v$.confirmPassword.$model"
+            <input v-on:input="checkPassword()" type="password" v-model="v$.confirmPassword.$model"
                 placeholder="Confirm Password" />
             <div v-for="(error, index) of v$.confirmPassword.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>

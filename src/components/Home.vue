@@ -1,7 +1,8 @@
 <template>
-    <Header />
-    <h1>Hello {{ name }}, Welcome on Home Page</h1>
-    <table class="books-table">
+    <div v-if="name===''"><Header /></div>
+    <div v-if="name!==''"><HeaderLogin /></div>
+    <h1 v-if="name!==''">Hello {{ name }}, Welcome on Home Page</h1>
+    <!-- <table class="books-table">
         <tr>
             <th>ID number</th>
             <th>Title</th>
@@ -13,17 +14,23 @@
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
             <td>{{ item.price }}</td>
-            <!-- Actions: update and delete -->
-            <!-- <td>
-                <router-link :to="'/update/' + item.id">Update</router-link>
-                <img v-on:click="deleteBook(item.id)" src="../assets/delete.png" class="icon" alt="" title="Delete">
-            </td> -->
         </tr>
-    </table>
+    </table> -->
+
+    <div class="offer">
+        <div v-for="item in books" :key="item.id" class="book">
+            <h2>{{ item.title }}</h2>
+            <div>{{ item.author }}</div>
+            <div>{{ item.price }} $</div>
+            <button v-on:click="addToCart">Add to Cart</button>
+        </div>
+
+    </div>
 </template>
 
 <script>
 import Header from './Header.vue';
+import HeaderLogin from './HeaderLogin.vue';
 import axios from 'axios';
 export default {
     name: 'Home-page',
@@ -34,23 +41,26 @@ export default {
         }
     },
     components: {
-        Header
-    },
+    Header,
+    HeaderLogin
+},
 
     methods: {
         
         async loadData() {
+            let result = await axios.get("http://localhost:3000/books?published=true");
+            this.books = result.data;
             let user = localStorage.getItem('user-info');
-
-            // Home page only available when user is log in
-            if (!user) {
-                this.$router.push({ name: 'SignUp' });
-            } else {
+            if (user) {
                 this.name = JSON.parse(user).name;
             }
-            let result = await axios.get("http://localhost:3000/books?published=true");
-            //console.warn(result);
-            this.books = result.data;
+
+            // Home page only available when user is log in
+            // if (!user) {
+            //     this.$router.push({ name: 'SignUp' });
+            // } else {
+            //     this.name = JSON.parse(user).name;
+            // }
         }
     },
 
