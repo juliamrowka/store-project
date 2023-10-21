@@ -13,7 +13,7 @@
 
         <!-- Password -->
         <div class="form-group" :class="{ error: v$.password.$errors.length }">
-            <input placeholder="Enter your password" type="password" v-model="v$.password.$model">
+            <input placeholder="Enter your password" type="password" v-model="v$.password.$model" v-on:keyup.enter="login">
             <!-- error message -->
             <div v-for="(error, index) of v$.password.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
