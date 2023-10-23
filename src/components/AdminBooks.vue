@@ -8,6 +8,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Actions</th>
         </tr>
         <tr v-for="item in books" :key="item.id">
@@ -15,6 +16,7 @@
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
             <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
             <td>
                 <router-link :to="'/admin/books/update/' + item.id">Update</router-link>
                 <button v-if="!item.published" v-on:click="publishBook(item.id)">Publish</button>

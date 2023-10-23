@@ -5,6 +5,7 @@
         <input type="text" name="title" placeholder="Enter Title" v-model="book.title" />
         <input type="text" name="author" placeholder="Enter Author" v-model="book.author" />
         <input type="number" name="price" placeholder="Enter Price" v-model="book.price" />
+        <input type="number" name="quantity" placeholder="Enter Quantity" v-model="book.quantity" />
         <button type="button" v-on:click="updateBook">Update book</button>
     </form>
 </template>
@@ -23,7 +24,8 @@ export default {
             book: {
                 title: '',
                 author: '',
-                price: ''
+                price: '',
+                quantity: ''
             },
             name: '',
         }
@@ -32,10 +34,11 @@ export default {
     methods: {
         async updateBook() {
             // console.warn(this.book)
-            const result = await axios.put("http://localhost:3000/books/" + this.$route.params.id, {
+            const result = await axios.patch("http://localhost:3000/books/" + this.$route.params.id, {
                 title: this.book.title,
                 author: this.book.author,
-                price: this.book.price
+                price: this.book.price,
+                quantity: this.book.quantity
             });
             if (result.status === 200) {
                 this.$router.push({ name: 'AdminBooks' });

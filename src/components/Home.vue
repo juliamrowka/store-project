@@ -22,7 +22,7 @@
             <h2>{{ item.title }}</h2>
             <div>{{ item.author }}</div>
             <div>{{ item.price }} $</div>
-            <button v-on:click="addToCart">Add to Cart</button>
+            <button v-on:click="addToCart" :disabled="item.quantity <= 0">Add to Cart</button>
         </div>
 
     </div>
@@ -38,7 +38,6 @@ export default {
         return {
             name: '',
             books: [],
-
         }
     },
     components: {
@@ -51,17 +50,21 @@ export default {
         async loadData() {
             let result = await axios.get("http://localhost:3000/books?published=true");
             this.books = result.data;
+            console.log(result);
             let user = localStorage.getItem('user-info');
             if (user) {
                 this.name = JSON.parse(user).name;
             }
-
-            // Home page only available when user is log in
+                        // Home page only available when user is log in
             // if (!user) {
             //     this.$router.push({ name: 'SignUp' });
             // } else {
             //     this.name = JSON.parse(user).name;
             // }
+        },
+
+        addToCart() {
+
         }
     },
 

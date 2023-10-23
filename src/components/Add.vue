@@ -5,6 +5,7 @@
         <input type="text" name="title" placeholder="Enter Title" v-model="book.title" />
         <input type="text" name="author" placeholder="Enter Author" v-model="book.author" />
         <input type="number" name="price" placeholder="Enter Price" v-model="book.price" />
+        <input type="number" name="quantity" placeholder="Enter Quantity" v-model="book.quantity" />
         <button type="button" v-on:click="addBook">Add new book</button>
     </form>
 </template>
@@ -23,7 +24,9 @@ export default {
             book: {
                 title: '',
                 author: '',
-                price: ''
+                price: '',
+                quantity: '',
+                published: ''
             },
             name:'',
 
@@ -36,7 +39,9 @@ export default {
             const result = await axios.post("http://localhost:3000/books", {
                 title: this.book.title,
                 author: this.book.author,
-                price: this.book.price
+                price: this.book.price,
+                quantity: this.book.quantity,
+                published: false
             });
             if (result.status === 201) {
                 this.$router.push({ name: 'AdminBooks' });

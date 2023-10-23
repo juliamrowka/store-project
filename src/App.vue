@@ -123,17 +123,18 @@ th {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
 
-  .book {
-    padding: 2.5rem;
-    width: 200px;
-    margin: 12px;
-    /* color: #c0c0c0; */
-    background-color: rgb(218, 190, 168);
-    /* border: 1px solid gray; */
-    border-radius: 8px;
-    text-align: center;
-    overflow: hidden;
-  }
 
-}</style>
+.book {
+  padding: 2.5rem;
+  width: 200px;
+  margin: 12px;
+  /* color: #c0c0c0; */
+  background-color: rgb(218, 190, 168);
+  /* border: 1px solid gray; */
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden;
+}
+</style>
