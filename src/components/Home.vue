@@ -1,6 +1,6 @@
 <template>
     <div v-if="name===''"><Header /></div>
-    <div v-if="name!==''"><HeaderLogin /></div>
+    <div v-if="name!==''"><HeaderLogin :name="name"/></div>
     <h1 v-if="name!==''">Hello {{ name }}, Welcome on Home Page</h1>
     <!-- <table class="books-table">
         <tr>
@@ -37,7 +37,8 @@ export default {
     data() {
         return {
             name: '',
-            books: []
+            books: [],
+
         }
     },
     components: {

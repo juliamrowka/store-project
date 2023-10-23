@@ -2,6 +2,8 @@
     <div class="nav">
         <router-link to="/">Books</router-link>
         <a v-on:click="logout" href="#">Log out</a>
+        <router-link to="/cart">Shopping Cart</router-link>
+        <a href="#">Hello {{ name }}!</a>
     </div>
 </template>
 
@@ -9,6 +11,9 @@
 
 export default {
     name: 'Header-page',
+    props: {
+        name: String
+    },
 
     // data() {
     //     return {
