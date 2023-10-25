@@ -3,7 +3,7 @@
         <router-link to="/">Books</router-link>
         <a v-on:click="logout" href="#">Log out</a>
         <a href="#">Hello {{ name }}!</a>
-        <!-- <router-link to="/cart">Shopping Cart</router-link> -->
+        <router-link to="/cart">Shopping Cart</router-link>
     </div>
 </template>
 

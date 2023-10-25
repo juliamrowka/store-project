@@ -67,6 +67,9 @@ export default {
             errorPassword: '',
             role: '',
             blocked: '',
+            cart: {
+                userId: ''
+            }
         }
     },
 
@@ -94,10 +97,17 @@ export default {
                     password: this.password,
                     role: "customer",
                     blocked: false
-
                 });
 
-                // console.log(result);
+                this.cart.userId = result.data.id;
+                console.log(this.cart.userId);
+
+                await axios.post("http://localhost:3000/cart", {
+                    userId: this.cart.userId,
+                    booksId: []
+                });
+
+                console.log(result);
                 if (result.status === 201) {
                     localStorage.setItem("user-info", JSON.stringify(result.data));
                     //redirect to home page after sign up

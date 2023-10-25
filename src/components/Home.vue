@@ -66,7 +66,7 @@ export default {
                 this.name = JSON.parse(user).name;
                 this.logged = true;
                 // user id in cart = id of user who is loged in
-                this.userId = JSON.parse(user).id;
+                this.cart.userId = JSON.parse(user).id;
                 console.log(this.userId);
                 console.log(typeof (this.userId));
             }
@@ -80,7 +80,7 @@ export default {
 
         async addToCart(id) {
             //show content of cart depending on which user is loged in
-            let resultUser = await axios.get(`http://localhost:3000/cart?userId=${this.userId}`);
+            let resultUser = await axios.get(`http://localhost:3000/cart?userId=${this.cart.userId}`);
             console.log(resultUser);
             this.cart.id = resultUser.data[0].id;
             this.cart.booksId = resultUser.data[0].booksId;
