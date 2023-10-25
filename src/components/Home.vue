@@ -1,7 +1,11 @@
 <template>
-    <div v-if="name===''"><Header /></div>
-    <div v-if="name!==''"><HeaderLogin :name="name"/></div>
-    <h1 v-if="name!==''">Hello {{ name }}, Welcome on Home Page</h1>
+    <div v-if="name === ''">
+        <Header />
+    </div>
+    <div v-if="name !== ''">
+        <HeaderLogin :name="name" />
+    </div>
+    <h1 v-if="name !== ''">Hello {{ name }}, Welcome on Home Page</h1>
     <!-- <table class="books-table">
         <tr>
             <th>ID number</th>
@@ -22,7 +26,7 @@
             <h2>{{ item.title }}</h2>
             <div>{{ item.author }}</div>
             <div>{{ item.price }} $</div>
-            <button v-on:click="addToCart" :disabled="item.quantity <= 0">Add to Cart</button>
+            <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
         </div>
 
     </div>
@@ -38,15 +42,21 @@ export default {
         return {
             name: '',
             books: [],
+            logged: '',
+            cart: {
+                id: '',
+                userId: '',
+                booksId: []
+            }
         }
     },
     components: {
-    Header,
-    HeaderLogin
-},
+        Header,
+        HeaderLogin
+    },
 
     methods: {
-        
+
         async loadData() {
             let result = await axios.get("http://localhost:3000/books?published=true");
             this.books = result.data;
@@ -54,8 +64,13 @@ export default {
             let user = localStorage.getItem('user-info');
             if (user) {
                 this.name = JSON.parse(user).name;
+                this.logged = true;
+                // user id in cart = id of user who is loged in
+                this.userId = JSON.parse(user).id;
+                console.log(this.userId);
+                console.log(typeof (this.userId));
             }
-                        // Home page only available when user is log in
+            // Home page only available when user is log in
             // if (!user) {
             //     this.$router.push({ name: 'SignUp' });
             // } else {
@@ -63,8 +78,21 @@ export default {
             // }
         },
 
-        addToCart() {
-
+        async addToCart(id) {
+            //show content of cart depending on which user is loged in
+            let resultUser = await axios.get(`http://localhost:3000/cart?userId=${this.userId}`);
+            console.log(resultUser);
+            this.cart.id = resultUser.data[0].id;
+            this.cart.booksId = resultUser.data[0].booksId;
+            //push selected book to the cart
+            this.cart.booksId.push(id);
+            let result = await axios.patch("http://localhost:3000/cart/" + this.cart.id, {
+                booksId: this.cart.booksId
+            });
+            // console.log(this.books.id);
+            console.log(this.userId);
+            console.log(result);
+            
         }
     },
 

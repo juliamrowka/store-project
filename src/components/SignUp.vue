@@ -66,7 +66,7 @@ export default {
             confirmPassword: '',
             errorPassword: '',
             role: '',
-            blocked: ''
+            blocked: '',
         }
     },
 
@@ -97,7 +97,7 @@ export default {
 
                 });
 
-                // console.warn(result);
+                // console.log(result);
                 if (result.status === 201) {
                     localStorage.setItem("user-info", JSON.stringify(result.data));
                     //redirect to home page after sign up
