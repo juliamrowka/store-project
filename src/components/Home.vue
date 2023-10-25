@@ -41,11 +41,12 @@ export default {
     data() {
         return {
             name: '',
-            books: [],
+            userId: '',
             logged: '',
+            books: [],
             cart: {
-                id: '',
-                userId: '',
+                // id: '',
+                // userId: '',
                 booksId: []
             }
         }
@@ -65,34 +66,25 @@ export default {
             if (user) {
                 this.name = JSON.parse(user).name;
                 this.logged = true;
-                // user id in cart = id of user who is loged in
-                this.cart.userId = JSON.parse(user).id;
-                console.log(this.userId);
-                console.log(typeof (this.userId));
             }
-            // Home page only available when user is log in
-            // if (!user) {
-            //     this.$router.push({ name: 'SignUp' });
-            // } else {
-            //     this.name = JSON.parse(user).name;
-            // }
         },
 
         async addToCart(id) {
-            //show content of cart depending on which user is loged in
-            let resultUser = await axios.get(`http://localhost:3000/cart?userId=${this.cart.userId}`);
-            console.log(resultUser);
-            this.cart.id = resultUser.data[0].id;
-            this.cart.booksId = resultUser.data[0].booksId;
-            //push selected book to the cart
-            this.cart.booksId.push(id);
-            let result = await axios.patch("http://localhost:3000/cart/" + this.cart.id, {
-                booksId: this.cart.booksId
-            });
-            // console.log(this.books.id);
-            console.log(this.userId);
-            console.log(result);
-            
+
+            let user = localStorage.getItem('user-info');
+            if (user) {
+                this.userId = JSON.parse(user).id;
+                let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
+                if (result.data[0].books) {
+                    this.cart.booksId = result.data[0].books;
+                } else {
+                    this.cart.booksId = [];
+                }
+                this.cart.booksId.push(id);
+                await axios.patch("http://localhost:3000/users/" + this.userId, {
+                    books: this.cart.booksId
+                });
+            }
         }
     },
 

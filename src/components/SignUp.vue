@@ -26,7 +26,8 @@
         </div>
 
         <div class="form-group">
-            <input v-on:input="checkPassword()" type="password" v-model="v$.confirmPassword.$model" placeholder="Confirm Password" v-on:keyup.enter="signUp"/>
+            <input v-on:input="checkPassword()" type="password" v-model="v$.confirmPassword.$model"
+                placeholder="Confirm Password" v-on:keyup.enter="signUp" />
             <div v-for="(error, index) of v$.confirmPassword.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
@@ -66,10 +67,7 @@ export default {
             confirmPassword: '',
             errorPassword: '',
             role: '',
-            blocked: '',
-            cart: {
-                userId: ''
-            }
+            blocked: ''
         }
     },
 
@@ -97,14 +95,6 @@ export default {
                     password: this.password,
                     role: "customer",
                     blocked: false
-                });
-
-                this.cart.userId = result.data.id;
-                console.log(this.cart.userId);
-
-                await axios.post("http://localhost:3000/cart", {
-                    userId: this.cart.userId,
-                    booksId: []
                 });
 
                 console.log(result);

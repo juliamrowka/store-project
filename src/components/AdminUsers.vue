@@ -31,10 +31,10 @@ export default {
         return {
             name: '',
             users: [],
-            cart: {
-                userId: '',
-                id: ''
-            }
+            // cart: {
+            //     userId: '',
+            //     id: ''
+            // }
         };
     },
 
@@ -42,17 +42,6 @@ export default {
 
     methods: {
         async deleteUser(id) {
-            // console.log(id);
-            // let result = await axios.delete("http://localhost:3000/users/" + id);
-            // console.warn(result);
-            // if (result.status === 200) {
-            //     let resultUser = await axios.get(`http://localhost:3000/cart?userId=${id}`);
-            //     console.log(resultUser);
-            //     this.cart.id = resultUser.data.id;
-            //     console.log(this.cart.id);
-            //     await axios.delete("http://localhost:3000/cart/" + this.cart.id);
-            //     this.loadData();
-            // }
 
             let result = await axios.delete("http://localhost:3000/users/" + id);
             // console.warn(result);
