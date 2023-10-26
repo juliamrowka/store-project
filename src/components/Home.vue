@@ -27,6 +27,8 @@
             <div>{{ item.author }}</div>
             <div>{{ item.price }} $</div>
             <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
+            <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from
+                Cart</button>
         </div>
 
     </div>
@@ -84,6 +86,28 @@ export default {
                 await axios.patch("http://localhost:3000/users/" + this.userId, {
                     books: this.cart.booksId
                 });
+            }
+        },
+
+        async removeFromCart(id) {
+            let user = localStorage.getItem('user-info');
+            if (user) {
+                this.userId = JSON.parse(user).id;
+                let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
+                // console.log(result);
+                if (result.data[0].books) {
+                    this.cart.booksId = result.data[0].books;
+                    let index = this.cart.booksId.indexOf(id);
+                    // console.log(index);
+                    this.cart.booksId.splice(index, 1);
+                    // console.log(this.cart.booksId);
+                    await axios.patch("http://localhost:3000/users/" + this.userId, {
+                        books: this.cart.booksId
+                    });
+                } else {
+                    alert("Your cart is empty");
+                    // or sth like this
+                }
             }
         }
     },
