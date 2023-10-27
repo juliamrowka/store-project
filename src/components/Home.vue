@@ -6,21 +6,6 @@
         <HeaderLogin :name="name" />
     </div>
     <h1 v-if="name !== ''">Hello {{ name }}, Welcome on Home Page</h1>
-    <!-- <table class="books-table">
-        <tr>
-            <th>ID number</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Price</th>
-        </tr>
-        <tr v-for="item in books" :key="item.id">
-            <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.author }}</td>
-            <td>{{ item.price }}</td>
-        </tr>
-    </table> -->
-
     <div class="offer">
         <div v-for="item in books" :key="item.id" class="book">
             <h2>{{ item.title }}</h2>
