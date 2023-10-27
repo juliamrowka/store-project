@@ -27,10 +27,8 @@
             <div>{{ item.author }}</div>
             <div>{{ item.price }} $</div>
             <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
-            <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from
-                Cart</button>
+            <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from Cart</button>
         </div>
-
     </div>
 </template>
 
@@ -63,7 +61,8 @@ export default {
         async loadData() {
             let result = await axios.get("http://localhost:3000/books?published=true");
             this.books = result.data;
-            console.log(result);
+            // console.log(result);
+            // console.log(this.books);
             let user = localStorage.getItem('user-info');
             if (user) {
                 this.name = JSON.parse(user).name;

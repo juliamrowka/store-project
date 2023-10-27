@@ -8,6 +8,7 @@ import Admin from './components/Admin.vue'
 import AdminLogin from './components/AdminLogin.vue'
 import AdminBooks from './components/AdminBooks.vue'
 import AdminUsers from './components/AdminUsers.vue'
+import CartDetails from './components/CartDetails.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -70,6 +71,12 @@ const routes = [
         name: 'AdminUsers',
         component: AdminUsers,
         path: '/admin/users'
+    },
+
+    {
+        name: 'CartDetails',
+        component: CartDetails,
+        path: '/cart'
     }
 ];
 
