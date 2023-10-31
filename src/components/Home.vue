@@ -11,6 +11,7 @@
             <h2>{{ item.title }}</h2>
             <div>{{ item.author }}</div>
             <div>{{ item.price }} $</div>
+            <div>{{ item.quantity }}</div>
             <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
             <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from Cart</button>
         </div>

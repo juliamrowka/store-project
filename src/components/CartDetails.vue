@@ -121,6 +121,7 @@ export default {
                 cart = [...new Set(cart)];
                 for (let i = 0; i < cart.length; i++) {
                     let resultCart = await axios.get(`http://localhost:3000/books?id=${cart[i]}`);
+                    // console.log(resultCart);
                     resultCart.data[0].cartQuantity = counts[resultCart.data[0].id];
                     if (resultCart.data[0].cartQuantity > 0) {
                         this.cartContent[i] = resultCart.data[0];

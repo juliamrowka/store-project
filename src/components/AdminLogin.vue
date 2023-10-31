@@ -30,7 +30,7 @@ export default {
     name: 'Admin-page',
 
     setup() {
-        return { v$: useVuelidate() }
+        return { v$: useVuelidate() };
     },
 
     data() {

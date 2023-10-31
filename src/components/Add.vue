@@ -2,21 +2,47 @@
     <Header />
     <h1>Hello {{ name }}, Welcome on Add Book Page</h1>
     <form class="add">
-        <input type="text" name="title" placeholder="Enter Title" v-model="book.title" />
-        <input type="text" name="author" placeholder="Enter Author" v-model="book.author" />
-        <input type="number" name="price" placeholder="Enter Price" v-model="book.price" />
-        <input type="number" name="quantity" placeholder="Enter Quantity" v-model="book.quantity" />
-        <button type="button" v-on:click="addBook">Add new book</button>
+        <div>
+            <input type="text" name="title" placeholder="Enter Title" v-model="v$.book.title.$model" />
+            <div v-for="(error, index) of v$.book.title.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div>
+            <input type="text" name="author" placeholder="Enter Author" v-model="v$.book.author.$model" />
+            <div v-for="(error, index) of v$.book.author.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div>
+            <input type="number" name="price" placeholder="Enter Price" v-model="v$.book.price.$model" />
+            <div v-for="(error, index) of v$.book.price.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <div>
+            <input type="number" name="quantity" placeholder="Enter Quantity" v-model="v$.book.quantity.$model" />
+            <div v-for="(error, index) of v$.book.quantity.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
+        <button :disabled="v$.$invalid" v-on:click="addBook">Add new book</button>
     </form>
 </template>
 
 <script>
 import Header from './Header.vue';
 import axios from 'axios';
+import useVuelidate from '@vuelidate/core';
+import { required, numeric, integer } from '@vuelidate/validators';
 export default {
     name: 'Add-page',
     components: {
         Header
+    },
+
+    setup() {
+        return { v$: useVuelidate() };
     },
 
     data() {
@@ -28,8 +54,19 @@ export default {
                 quantity: '',
                 published: ''
             },
-            name:'',
+            name: '',
 
+        }
+    },
+
+    validations() {
+        return {
+            book: {
+                title: { required },
+                author: { required },
+                price: { required, numeric },
+                quantity: { required, integer }
+            }
         }
     },
 
