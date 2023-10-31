@@ -1,23 +1,25 @@
 <template>
     <HeaderLogin :name="name" />
     <h1>Cart Details</h1>
-    <div v-if="emptyCart">
+    <div v-if="empty">
         <h2>Your cart is empty.</h2>
         <router-link to="/">Go to the home page</router-link>
     </div>
-    <div v-if="!emptyCart" class="offer">
+    <div v-if="!empty" class="offer">
         <div v-for="item in cartContent" :key="item.id" class="book">
             <h2>{{ item.title }}</h2>
             <div>{{ item.author }}</div>
-            <div>Quantity: {{ item.cartQuantity }}<button v-on:click="removeFromCart(item.id)">-</button></div>
+            <div>Quantity: {{ item.cartQuantity }}
+                <button v-on:click="removeFromCart(item.id)">-</button>
+                <button v-on:click="addToCart(item.id)">+</button>
+            </div>
             <div>{{ item.price }} $</div>
-            <!-- <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
-            <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from Cart</button> -->
         </div>
     </div>
     <div>
-        <h3>Total price: {{ totalPrice }}</h3>
+        <h3>Total price: {{ totalPrice }} $</h3>
     </div>
+    <div v-if="!empty"><button v-on:click="emptyCart()">Empty the cart</button></div>
 </template>
 
 <script>
@@ -29,7 +31,7 @@ export default {
         return {
             name: '',
             userId: '',
-            emptyCart: false,
+            empty: false,
             cartContent: [],
             totalPrice: 0,
             cart: {
@@ -43,9 +45,9 @@ export default {
     },
 
     methods: {
-        async loadData() {
+        // async loadData() {
 
-        },
+        // },
 
         async removeFromCart(id) {
             let user = localStorage.getItem('user-info');
@@ -62,13 +64,44 @@ export default {
                     await axios.patch("http://localhost:3000/users/" + this.userId, {
                         books: this.cart.booksId
                     });
-                    this.$router.go()
+                    this.$router.go();
                 } else {
-
                     alert("Your cart is empty");
                     // or sth like this
                 }
 
+            }
+        },
+
+        async addToCart(id) {
+
+            let user = localStorage.getItem('user-info');
+            if (user) {
+                this.userId = JSON.parse(user).id;
+                let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
+                if (result.data[0].books) {
+                    this.cart.booksId = result.data[0].books;
+                } else {
+                    this.cart.booksId = [];
+                }
+                this.cart.booksId.push(id);
+                await axios.patch("http://localhost:3000/users/" + this.userId, {
+                    books: this.cart.booksId
+                });
+                this.$router.go();
+            }
+        },
+
+        async emptyCart() {
+            let user = localStorage.getItem('user-info');
+            if (user) {
+                this.userId = JSON.parse(user).id;
+                this.cart.booksId = [];
+                let result = await axios.patch("http://localhost:3000/users/" + this.userId, {
+                    books: this.cart.booksId
+                });
+                console.log(result);
+                this.$router.go();
             }
         }
     },
@@ -95,8 +128,8 @@ export default {
                     this.totalPrice += this.cartContent[i].cartQuantity * this.cartContent[i].price;
                 }
             } else {
-                this.emptyCart = true;
-                this.$router.push({ name: 'CartDetails' });
+                this.empty = true;
+                // this.$router.push({ name: 'CartDetails' });
             }
         }
     }
