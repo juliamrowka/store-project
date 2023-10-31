@@ -9,7 +9,7 @@
         <div v-for="item in cartContent" :key="item.id" class="book">
             <h2>{{ item.title }}</h2>
             <div>{{ item.author }}</div>
-            <div>Quantity: {{ item.cartQuantity }}<button v-on:click="removeFromCart">-</button></div>
+            <div>Quantity: {{ item.cartQuantity }}<button v-on:click="removeFromCart(item.id)">-</button></div>
             <div>{{ item.price }} $</div>
             <!-- <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
             <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from Cart</button> -->
@@ -52,13 +52,13 @@ export default {
             if (user) {
                 this.userId = JSON.parse(user).id;
                 let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
-                // console.log(result);
+                console.log(result);
                 if (result.data[0].books.length > 0) {
                     this.cart.booksId = result.data[0].books;
                     let index = this.cart.booksId.indexOf(id);
-                    // console.log(index);
+                    console.log(index);
                     this.cart.booksId.splice(index, 1);
-                    // console.log(this.cart.booksId);
+                    console.log(this.cart.booksId);
                     await axios.patch("http://localhost:3000/users/" + this.userId, {
                         books: this.cart.booksId
                     });
