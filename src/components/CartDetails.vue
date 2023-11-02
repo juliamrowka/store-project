@@ -1,25 +1,47 @@
 <template>
     <HeaderLogin :name="name" />
-    <h1>Cart Details</h1>
-    <div v-if="empty">
-        <h2>Your cart is empty.</h2>
-        <router-link to="/">Go to the home page</router-link>
+    <div v-if="empty" class="mx-auto" style="max-width: 50%;">
+
+        <div class="d-flex flex-column m-3">
+            <h1 class="text-body-priamry fs-3">Your cart is empty</h1>
+            <router-link to="/">Go to the home page</router-link>
+        </div>
+
     </div>
-    <div v-if="!empty" class="offer">
-        <div v-for="item in cartContent" :key="item.id" class="book">
-            <h2>{{ item.title }}</h2>
-            <div>{{ item.author }}</div>
-            <div>Quantity: {{ item.cartQuantity }}
-                <button v-on:click="removeFromCart(item.id)">-</button>
-                <button v-on:click="addToCart(item.id)">+</button>
+
+    <div v-if="!empty" class="mx-auto" style="max-width: 50%;">
+        <div class="d-flex flex-row justify-content-between align-items-center py-2">
+            <div class="d-flex flex-column">
+                <h1 class="text-body-priamry fs-3">Cart Details</h1>
+                <button type="button" class="btn btn-outline-danger" v-on:click="emptyCart()">Empty the cart</button>
             </div>
-            <div>{{ item.price }} $</div>
+            <div class="text-end text-body-secondary fs-2">Total price: <span class="fw-semibold">{{ totalPrice }} $</span>
+            </div>
+        </div>
+        <div v-for="item in cartContent" :key="item.id" class="list-group">
+            <div class="list-group-item list-group-item-action d-flex flex-row mb-3">
+                <div class="d-flex flex-column" style="width: 10%;">
+                    <img :src=item.url alt="" class="img-fluid p-8 rounded">
+                </div>
+                <div class="d-flex flex-column px-3" style="width: 70%;">
+                    <h4 class="mb-1">{{ item.title }}</h4>
+                    <p class="mb-1">{{ item.author }}</p>
+                    <h5 class="mb-1 text-body-secondary">{{ item.price }} $</h5>
+                </div>
+                <div class="d-flex flex-column" style="width: 20%;">
+                    <div class="mx-auto" style="width: fit-content;">
+                        <div class="btn-group p-3" role="group" aria-label="Basic outlined example" style="width: 15%;">
+                            <button type="button" class="btn btn-outline-primary"
+                                v-on:click="removeFromCart(item.id)">-</button>
+                            <button type="button" class="btn btn-outline-primary">{{ item.cartQuantity }}</button>
+                            <button type="button" class="btn btn-outline-primary" v-on:click="addToCart(item.id)">+</button>
+                        </div>
+                    </div>
+                    <h4 class="mb-1 text-body-primary mx-auto">{{ item.partialPrice }} $</h4>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
-        <h3>Total price: {{ totalPrice }} $</h3>
-    </div>
-    <div v-if="!empty"><button v-on:click="emptyCart()">Empty the cart</button></div>
 </template>
 
 <script>
@@ -127,6 +149,9 @@ export default {
                         this.cartContent[i] = resultCart.data[0];
                     }
                     this.totalPrice += this.cartContent[i].cartQuantity * this.cartContent[i].price;
+                    resultCart.data[0].partialPrice = this.cartContent[i].cartQuantity * this.cartContent[i].price;
+                    let partialPrice = resultCart.data[0].partialPrice;
+                    resultCart.data[0].partialPrice = Number.parseFloat(partialPrice.toFixed(2))
                 }
                 let price = this.totalPrice;
                 this.totalPrice = Number.parseFloat(price.toFixed(2));

@@ -57,7 +57,6 @@ export default {
             let result = await axios.get("http://localhost:3000/books?published=true");
             this.books = result.data;
             // console.log(result);
-            // console.log(this.books);
             let user = localStorage.getItem('user-info');
             if (user) {
                 this.name = JSON.parse(user).name;
