@@ -1,5 +1,5 @@
 <template>
-    <Header />
+    <AdminHeader />
     <h1>Hello {{ name }}, Welcome on Add Book Page</h1>
     <form class="add">
         <div>
@@ -26,20 +26,26 @@
                 <div class="error-msg">{{ error.$message }}</div>
             </div>
         </div>
+        <div>
+            <input type="url" name="url" placeholder="Enter URL of photo" v-model="v$.book.url.$model" />
+            <div v-for="(error, index) of v$.book.url.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+            </div>
+        </div>
         <button :disabled="v$.$invalid" v-on:click="addBook">Add new book</button>
     </form>
 </template>
 
 <script>
-import Header from './Header.vue';
+import AdminHeader from './Header.vue';
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core';
 import { required, numeric, integer } from '@vuelidate/validators';
 export default {
     name: 'Add-page',
     components: {
-        Header
-    },
+    AdminHeader
+},
 
     setup() {
         return { v$: useVuelidate() };
@@ -52,6 +58,7 @@ export default {
                 author: '',
                 price: '',
                 quantity: '',
+                url: '',
                 published: ''
             },
             name: '',
@@ -65,7 +72,8 @@ export default {
                 title: { required },
                 author: { required },
                 price: { required, numeric },
-                quantity: { required, integer }
+                quantity: { required, integer },
+                url: { required }
             }
         }
     },
@@ -78,6 +86,7 @@ export default {
                 author: this.book.author,
                 price: this.book.price,
                 quantity: this.book.quantity,
+                url: this.book.url,
                 published: false
             });
             if (result.status === 201) {
