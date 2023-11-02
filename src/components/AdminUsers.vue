@@ -1,5 +1,5 @@
 <template>
-    <AdminHeader />
+    <AdminHeader :name="name" />
     <h1>Hello {{ name }}, Welcome on Users Page</h1>
     <table class="users-table">
         <tr>

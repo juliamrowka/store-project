@@ -1,7 +1,15 @@
+import PortalVue from 'portal-vue'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './routers'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(PortalVue)
+
+app.use(router)
+
+app.mount('#app')
+

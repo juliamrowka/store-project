@@ -128,6 +128,8 @@ export default {
                     }
                     this.totalPrice += this.cartContent[i].cartQuantity * this.cartContent[i].price;
                 }
+                let price = this.totalPrice;
+                this.totalPrice = Number.parseFloat(price.toFixed(2));
             } else {
                 this.empty = true;
                 // this.$router.push({ name: 'CartDetails' });

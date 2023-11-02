@@ -4,60 +4,27 @@
     </div>
     <div v-if="name !== ''">
         <HeaderLogin :name="name" />
-    </div>
-    <!-- <h1 v-if="name !== ''">Hello {{ name }}, Welcome on Home Page</h1> -->
-
+    </div>    
     <div class="row row-cols-1 row-cols-md-auto g-4 justify-content-center">
         <div class="col" v-for="item in books" :key="item.id">
-            <div class="card text-bg-light m-3 h-100" style="min-width: 18rem; max-width: 18rem;">
-                <img :src="item.url" class="card-img-top" alt="...">
+            <div class="card text-bg-light m-3 h-100" style="min-width: 14rem; max-width: 14rem;">
+                <img :src="item.url" class="card-img-top" style="max-height: 18rem;" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <div class="card-subtitle mb-2 text-body-secondary">{{ item.author }}</div>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     <div class="card-text"><small class="text-body-secondary">Quantity: {{ item.quantity }}</small></div>
                 </div>
                 <div class="card-footer d-md-flex justify-content-end align-items-center">
-                    <div class="flex-fill fs-3">{{ item.price }} $</div>
-                    <div class="">
-                        <button class="btn btn-outline-primary rounded" v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
-                    </div>
+                    <div class="flex-fill fs-4">{{ item.price }} $</div>
+
+                    <button class="btn btn-outline-primary rounded" v-if="logged" v-on:click="addToCart(item.id)"
+                        :disabled="item.quantity <= 0">Add to Cart</button>
+
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <div class="card-group">
-        <div class="card text-bg-light m-3 border-dark-subtle rounded-1" style="min-width: 18rem; max-width: 18rem;"
-            v-for="item in books" :key="item.id">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <div class="card-text">{{ item.author }}</div>
-                <div class="card-text">{{ item.price }} $</div>
-                <div class="card-text">{{ item.quantity }}</div>
-                <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
-                <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from
-                    Cart</button>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-secondary">Add to Cart</a>
-            </div>
-        </div>
-    </div> -->
-
-
-    <!-- <div class="offer">
-        <div v-for="item in books" :key="item.id" class="book">
-            <h2>{{ item.title }}</h2>
-            <div>{{ item.author }}</div>
-            <div>{{ item.price }} $</div>
-            <div>{{ item.quantity }}</div>
-            <button v-if="logged" v-on:click="addToCart(item.id)" :disabled="item.quantity <= 0">Add to Cart</button>
-            <button v-if="logged" v-on:click="removeFromCart(item.id)" :disabled="item.quantity <= 0">Remove from
-                Cart</button>
-        </div>
-    </div> -->
 </template>
 
 <script>
