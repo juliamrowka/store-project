@@ -1,17 +1,23 @@
 <template>
-    <img class="logo" src="../assets/book-logo.png">
-    <h1>Fotgot Password</h1>
-    <div class="forgot">
+    <div class="mx-auto container-sm my-3" style="max-width: 40%;">
+        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+            <legend class="text-primary fs-1">Forgot password</legend>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to the home page</router-link></div>
+        </div>
         <!-- Email -->
-        <div class="form-group" :class="{ error: v$.email.$errors.length }">
-            <input placeholder="Enter your email" type="email" v-model="v$.email.$model">
+        <div class="mb-2 mt-3" :class="{ error: v$.email.$errors.length }">
+            <label for="exampleInputEmail1" class="form-label">Enter your email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com"
+                v-model="v$.email.$model">
             <!-- error message -->
             <div v-for="(error, index) of v$.email.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+                <div class="text-danger">{{ error.$message }}</div>
             </div>
         </div>
         <!-- Submit Button -->
-        <button v-on:click="forgot">Submit</button>
+        <div class="border-top mt-3">
+            <button type="submit" class="btn btn-primary mt-3" :disabled="v$.$invalid" v-on:click="forgot">Submit</button>
+        </div>
     </div>
 </template>
 

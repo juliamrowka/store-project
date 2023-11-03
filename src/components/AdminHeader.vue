@@ -22,7 +22,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    Hello {{ name }}!
+                    Hello Admin!
                 </span>
             </div>
         </div>
@@ -41,10 +41,6 @@
 
 export default {
     name: 'AdminHeader',
-    props: {
-        name: String
-    },
-
     methods: {
         logout() {
             localStorage.clear();

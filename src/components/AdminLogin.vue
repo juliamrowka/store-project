@@ -1,24 +1,36 @@
 <template>
-    <h1>Admin Login Page</h1>
-    <div class="admin">
+    <div class="mx-auto container-sm my-3" style="max-width: 40%;">
+        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+            <legend class="text-primary fs-1">Admin Panel</legend>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/"
+                    class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to
+                    the Bookstore</router-link></div>
+        </div>
         <!-- Email -->
-        <div class="form-group" :class="{ error: v$.email.$errors.length }">
-            <input placeholder="Enter your email" type="text" v-model="v$.email.$model">
-            <div v-for="(error, index) of v$.email.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+        <div class="mb-2 mt-3" :class="{ error: v$.email.$errors.length }">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com"
+                v-model="v$.email.$model">
+        </div>
+        <!-- Email error message -->
+        <div v-for="(error, index) of v$.email.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
         </div>
         <!-- Password -->
-        <div class="form-group">
-            <input placeholder="Enter your password" type="password" v-model="v$.password.$model" v-on:keyup.enter="login">
-            <div v-for="(error, index) of v$.password.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-            <div class="error-msg" v-if="!this.correctPassword">Incorrect password or name.</div>
+        <div class="mb-2 mt-3" :class="{ error: v$.password.$errors.length }">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="v$.password.$model"
+                v-on:keyup.enter="login">
         </div>
+        <!-- Password error message -->
+        <div v-for="(error, index) of v$.password.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
+        </div>
+        <div class="text-danger text-center" v-if="!this.correctPassword">Incorrect password or email</div>
         <!-- Submit Button -->
-        <button v-on:click="login">Login</button>
-        <!-- Sign Up Page -->
+        <div class="border-top mt-3">
+            <button type="submit" class="btn btn-primary mt-3" :disabled="v$.$invalid" v-on:click="login">Submit</button>
+        </div>
     </div>
 </template>
     

@@ -2,7 +2,7 @@
     <div class="mx-auto container-sm my-3" style="max-width: 40%;">
         <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
             <legend class="text-primary fs-1">Sign Up</legend>
-            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to the main page</router-link></div>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to the home page</router-link></div>
         </div>
         <!-- Name -->
         <div class="mb-2 mt-3">
@@ -35,17 +35,17 @@
             </div>
         <!-- Confirm Password -->
         <div class="mb-2 mt-3">
-            <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" v-model="v$.confirmPassword.$model"
+            <label for="exampleInputPassword2" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" v-model="v$.confirmPassword.$model"
                 v-on:keyup.enter="signUp" v-on:input="checkPassword()">
         </div>
         <!-- Confirm Password error message -->
         <div v-for="(error, index) of v$.confirmPassword.$errors" :key="index">
                 <div class="text-danger text-center">{{ error.$message }}</div>
             </div>
-        <div class="text-danger text-center" v-if="errorPassword">{{ errorPassword }}</div>
+        <div class="text-danger text-center" v-if="errorPassword">Password do not match</div>
         <!-- Submit Button -->
-        <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-row justify-content-between align-items-center border-top mt-3">
             <button type="submit" class="btn btn-primary" :disabled="v$.$invalid" v-on:click="login">Submit</button>
             <div class="py-2 d-flex flex-column text-end">
                 <div>Already have an account?</div>
@@ -81,7 +81,7 @@ export default {
             email: '',
             password: '',
             confirmPassword: '',
-            errorPassword: '',
+            errorPassword: false,
             role: '',
             blocked: ''
         }
@@ -125,11 +125,10 @@ export default {
 
         checkPassword() {
             if (this.password !== this.confirmPassword) {
-                this.errorPassword = 'Passwords do not match';
-                return false;
+                this.errorPassword = true;
+            } else{
+                this.errorPassword = false;
             }
-            this.errorPassword = '';
-            return true;
         }
     },
 

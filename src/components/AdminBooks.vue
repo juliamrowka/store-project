@@ -1,5 +1,5 @@
 <template>
-    <AdminHeader :name="name" />
+    <AdminHeader />
     <h1>Hello {{ name }}, Welcome on Books Page</h1>
     <router-link to="/admin/books/add">Add New Book</router-link>
     <table class="books-table">

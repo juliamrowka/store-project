@@ -1,5 +1,5 @@
 <template>
-    <AdminHeader :name="name" />
+    <AdminHeader />
     <h1>Hello {{ name }}, Welcome on Users Page</h1>
     <table class="users-table">
         <tr>
@@ -29,7 +29,6 @@ export default {
 
     data() {
         return {
-            name: '',
             users: [],
             // cart: {
             //     userId: '',
@@ -72,12 +71,10 @@ export default {
 
         async loadData() {
             let role = localStorage.getItem('role');
-            let user = localStorage.getItem('user-info');
             if (role !== 'admin') {
                 this.$router.push({ name: 'AdminLogin' });
             }
             else {
-                this.name = JSON.parse(user).name;
                 let result = await axios.get("http://localhost:3000/users");
                 this.users = result.data;
                 this.blocked = result.data[0].blocked;
