@@ -17,7 +17,6 @@
                 </div>
                 <div class="card-footer d-md-flex justify-content-end align-items-center">
                     <div class="flex-fill fs-4">{{ item.price }} $</div>
-
                     <button class="btn btn-outline-primary rounded" v-if="logged" v-on:click="addToCart(item.id)"
                         :disabled="item.quantity <= 0">Add to Cart</button>
 

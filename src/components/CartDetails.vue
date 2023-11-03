@@ -3,19 +3,19 @@
     <div v-if="empty" class="mx-auto" style="max-width: 50%;">
 
         <div class="d-flex flex-column m-3">
-            <h1 class="text-body-priamry fs-3">Your cart is empty</h1>
-            <router-link to="/">Go to the home page</router-link>
+            <h1 class="text-body-priamry fs-3 mx-auto">Your cart is empty</h1>
+            <router-link to="/" class="mx-auto link-opacity-50-hover">Go to the home page</router-link>
         </div>
 
     </div>
 
     <div v-if="!empty" class="mx-auto" style="max-width: 50%;">
-        <div class="d-flex flex-row justify-content-between align-items-center py-2">
-            <div class="d-flex flex-column">
-                <h1 class="text-body-priamry fs-3">Cart Details</h1>
-                <button type="button" class="btn btn-outline-danger" v-on:click="emptyCart()">Empty the cart</button>
+        <div class="d-flex flex-row justify-content-between align-items-center py-1">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="text-body-priamry fs-2">Cart Details</div>
+                <button type="button" class="btn btn-outline-danger m-2" v-on:click="emptyCart()">Empty the cart</button>
             </div>
-            <div class="text-end text-body-secondary fs-2">Total price: <span class="fw-semibold">{{ totalPrice }} $</span>
+            <div class="text-end text-body-secondary fs-3">Total price: <span class="fw-semibold">{{ totalPrice }} $</span>
             </div>
         </div>
         <div v-for="item in cartContent" :key="item.id" class="list-group">
@@ -151,7 +151,7 @@ export default {
                     this.totalPrice += this.cartContent[i].cartQuantity * this.cartContent[i].price;
                     resultCart.data[0].partialPrice = this.cartContent[i].cartQuantity * this.cartContent[i].price;
                     let partialPrice = resultCart.data[0].partialPrice;
-                    resultCart.data[0].partialPrice = Number.parseFloat(partialPrice.toFixed(2))
+                    resultCart.data[0].partialPrice = Number.parseFloat(partialPrice.toFixed(2));
                 }
                 let price = this.totalPrice;
                 this.totalPrice = Number.parseFloat(price.toFixed(2));
