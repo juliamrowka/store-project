@@ -37,9 +37,8 @@ export default {
     methods: {
         logout() {
             localStorage.clear()
-            // add refresh page
             this.$router.push({ name: 'Home' })
-            this.$router.go();
+            // this.$router.go();
         },
     }
 }

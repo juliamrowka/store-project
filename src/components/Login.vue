@@ -1,35 +1,40 @@
 <template>
-    <img class="logo" src="../assets/book-logo.png">
-    <h1>Login</h1>
-    <div class="login">
+    <div class="mx-auto container-sm my-3" style="max-width: 40%;">
+        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+            <legend class="text-primary fs-1">Login</legend>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to the main page</router-link></div>
+        </div>
         <!-- Email -->
-        <div class="form-group" :class="{ error: v$.email.$errors.length }">
-            <input placeholder="Enter your email" type="email" v-model="v$.email.$model">
+        <div class="mb-2 mt-3" :class="{ error: v$.email.$errors.length }">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com"
+                v-model="v$.email.$model">
             <!-- error message -->
             <div v-for="(error, index) of v$.email.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+                <div class="text-danger">{{ error.$message }}</div>
             </div>
         </div>
-
         <!-- Password -->
-        <div class="form-group" :class="{ error: v$.password.$errors.length }">
-            <input placeholder="Enter your password" type="password" v-model="v$.password.$model" v-on:keyup.enter="login">
+        <div class="mb-2 mt-3" :class="{ error: v$.password.$errors.length }">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="v$.password.$model"
+                v-on:keyup.enter="login">
             <!-- error message -->
             <div v-for="(error, index) of v$.password.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+                <div class="text-danger">{{ error.$message }}</div>
             </div>
         </div>
-        <div class="error-msg" v-if="!this.correctPassword">Incorrect password or email.</div>
-        <div class="error-msg" v-if="this.blocked">You are blocked, please contact support.</div>
-
+        <div class="text-danger" v-if="!this.correctPassword">Incorrect password or email.</div>
+        <div class="text-danger" v-if="this.blocked">You are blocked, please contact support.</div>
         <!-- Submit Button -->
-        <button :disabled="v$.$invalid" v-on:click="login">Login</button>
-        <p>
-            <router-link to="/forgot">Forgot password?</router-link>
-        </p>
-        <!-- Sign Up Page -->
-        <div class="signup-login-router-link">
-            <p>Don't have an account yet? <router-link to="/sign-up">Create one here</router-link></p>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary" :disabled="v$.$invalid" v-on:click="login">Submit</button>
+            <div class="py-2 d-flex flex-column text-end">
+                <div class="mb-1"><router-link to="/forgot" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Forgot password?</router-link></div>
+                <div>
+                    Don't have an account yet? <router-link to="/sign-up" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Create one here</router-link>
+                </div>
+            </div>
         </div>
     </div>
 </template>

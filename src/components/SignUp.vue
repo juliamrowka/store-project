@@ -1,41 +1,57 @@
 <template>
-    <img class="logo" src="../assets/book-logo.png">
-    <h1>Sign Up</h1>
-    <div class="register">
+    <div class="mx-auto container-sm my-3" style="max-width: 40%;">
+        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+            <legend class="text-primary fs-1">Sign Up</legend>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to the main page</router-link></div>
+        </div>
         <!-- Name -->
-        <div class="form-group">
-            <input placeholder="Enter your name" type="text" v-model="v$.name.$model">
-            <!-- error message -->
-            <div v-for="(error, index) of v$.name.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+        <div class="mb-2 mt-3">
+            <label for="exampleInputName1" class="form-label">Name</label>
+            <input type="email" class="form-control" id="exampleInputName1" placeholder="" v-model="v$.name.$model">
         </div>
+        <!-- Name error message -->
+        <div v-for="(error, index) of v$.name.$errors" :key="index">
+                <div class="text-danger text-center">{{ error.$message }}</div>
+            </div>
         <!-- Email -->
-        <div class="form-group">
-            <input type="email" placeholder="Enter yor email" v-model="v$.email.$model" />
-            <div v-for="(error, index) of v$.email.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+        <div class="mb-2 mt-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com"
+                v-model="v$.email.$model">
+        </div>
+        <!-- Email error message -->
+        <div class="" v-for="(error, index) of v$.email.$errors" :key="index">
+                <div class="text-danger text-center">{{ error.$message }}</div>
+            </div>
+        <!-- Password -->
+        <div class="mb-2 mt-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="v$.password.$model"
+                v-on:keyup.enter="login">
+        </div>
+        <!-- Password error message -->
+        <div v-for="(error, index) of v$.password.$errors" :key="index">
+                <div class="text-danger text-center">{{ error.$message }}</div>
+            </div>
+        <!-- Confirm Password -->
+        <div class="mb-2 mt-3">
+            <label for="exampleInputPassword1" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="v$.confirmPassword.$model"
+                v-on:keyup.enter="signUp" v-on:input="checkPassword()">
+        </div>
+        <!-- Confirm Password error message -->
+        <div v-for="(error, index) of v$.confirmPassword.$errors" :key="index">
+                <div class="text-danger text-center">{{ error.$message }}</div>
+            </div>
+        <div class="text-danger text-center" v-if="errorPassword">{{ errorPassword }}</div>
+        <!-- Submit Button -->
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary" :disabled="v$.$invalid" v-on:click="login">Submit</button>
+            <div class="py-2 d-flex flex-column text-end">
+                <div>Already have an account?</div>
+                <router-link to="/login" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Login here!</router-link>
             </div>
         </div>
-        <!-- Password and confirm -->
-        <div class="form-group">
-            <input type="password" v-model="v$.password.$model" placeholder="Password" />
-            <div v-for="(error, index) of v$.password.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input v-on:input="checkPassword()" type="password" v-model="v$.confirmPassword.$model"
-                placeholder="Confirm Password" v-on:keyup.enter="signUp" />
-            <div v-for="(error, index) of v$.confirmPassword.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
-            <div class="error-msg" v-if="errorPassword">{{ errorPassword }}</div>
-        </div>
-        <!-- Submit button -->
-        <button :disabled="v$.$invalid" v-on:click="signUp">Sign Up</button>
-        <p>Already have an account? <router-link to="/login">Login here!</router-link></p>
     </div>
 </template>
 
