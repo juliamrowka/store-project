@@ -136,10 +136,13 @@ export default {
             this.userId = JSON.parse(user).id;
             let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
             let cart = result.data[0].books;
-            let counts = {};
-            cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 });
-            // console.log(cart.length);
-            if (cart.length > 0) {
+            if (!cart) {
+                this.empty = true;
+            } else if (cart.length <= 0){
+                this.empty = true;
+            } else {
+                let counts = {};
+                cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 });
                 cart = [...new Set(cart)];
                 for (let i = 0; i < cart.length; i++) {
                     let resultCart = await axios.get(`http://localhost:3000/books?id=${cart[i]}`);
@@ -155,10 +158,10 @@ export default {
                 }
                 let price = this.totalPrice;
                 this.totalPrice = Number.parseFloat(price.toFixed(2));
-            } else {
-                this.empty = true;
-                // this.$router.push({ name: 'CartDetails' });
             }
+        } else {
+            alert('To show your cart please log in first')
+            this.$router.push({ name: 'Login' });
         }
     }
 }

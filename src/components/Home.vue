@@ -8,8 +8,8 @@
     <div class="row row-cols-1 row-cols-md-auto g-4 justify-content-center">
         <div class="col" v-for="item in books" :key="item.id">
             <div class="card text-bg-light m-3 h-100" style="min-width: 14rem; max-width: 14rem;">
-                <img :src="item.url" class="card-img-top" style="max-height: 18rem;" alt="...">
-                <div class="card-body">
+                <div class="m-2"><img :src="item.url" class="card-img-top" style="max-height: 18rem;" alt="..."></div>
+                <div class="card-body border-top mx-2">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <div class="card-subtitle mb-2 text-body-secondary">{{ item.author }}</div>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->

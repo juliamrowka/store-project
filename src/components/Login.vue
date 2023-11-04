@@ -28,8 +28,8 @@
         <div v-for="(error, index) of v$.password.$errors" :key="index">
             <div class="text-danger text-center">{{ error.$message }}</div>
         </div>
-        <div class="text-danger" v-if="!this.correctPassword">Incorrect password or email</div>
-        <div class="text-danger" v-if="this.blocked">You are blocked, please contact support</div>
+        <div class="text-danger text-center" v-if="!this.correctPassword">Incorrect password or email</div>
+        <div class="text-danger text-center" v-if="this.blocked">You are blocked, please contact support</div>
         <!-- Submit Button -->
         <div class="d-flex flex-row justify-content-between align-items-center border-top mt-3">
             <div class="d-flex w-25">

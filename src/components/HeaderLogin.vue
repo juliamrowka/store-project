@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Bookstore</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link active" aria-current="page">Books</router-link>
+                        <router-link to="/" class="nav-link">Books</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/cart" class="nav-link">Shopping Cart</router-link>
@@ -37,8 +37,16 @@ export default {
     methods: {
         logout() {
             localStorage.clear()
-            this.$router.push({ name: 'Home' })
-            // this.$router.go();
+            
+            // console.log(this.$router.currentRoute._value.name);
+            // console.log(typeof(this.$router.currentRoute._value.name));
+            // console.log(this.$router.currentRoute._value.name === 'Home');
+
+            if (this.$router.currentRoute._value.name === 'Home') {
+                this.$router.go();
+            } else {
+                this.$router.push({ name: 'Home' })
+            }
         },
     }
 }

@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link active" aria-current="page">Books</router-link>
+                        <router-link to="/" class="nav-link">Books</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/sign-up" class="nav-link">Sign Up</router-link>
