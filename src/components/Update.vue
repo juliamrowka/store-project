@@ -87,8 +87,7 @@ export default {
                 price: '',
                 quantity: '',
                 url: ''
-            },
-            name: '',
+            }
         }
     },
 
@@ -121,11 +120,10 @@ export default {
     },
 
     async mounted() {
-        let user = localStorage.getItem('user-info');
-        if (!user) {
+        let admin= localStorage.getItem('role');
+        if (!admin || admin !== 'admin') {
             this.$router.push({ name: 'AdminLogin' });
         } else {
-            this.name = JSON.parse(user).name; // fetch name of user 
             const result = await axios.get('http://localhost:3000/books/' + this.$route.params.id);
             //console.warn(this.$route.params.id);
             // console.warn('result', result.data);

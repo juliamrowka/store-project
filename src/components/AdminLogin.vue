@@ -80,15 +80,6 @@ export default {
             } else {
                 this.correctPassword = false;
             }
-
-            // if (result.status === 200 && result.data[0].isAdmin === true) {
-            //     this.correct = true;
-            //     localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-            //     localStorage.setItem("is-admin", result.data[0].isAdmin);
-            //     this.$router.push({ name: 'Admin' });
-            // } else {
-            //     this.correct = false;
-            // }
         }
     },
 

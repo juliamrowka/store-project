@@ -67,9 +67,6 @@ export default {
     },
 
     methods: {
-        // async loadData() {
-
-        // },
 
         async removeFromCart(id) {
             let user = localStorage.getItem('user-info');

@@ -88,9 +88,7 @@ export default {
                 quantity: '',
                 url: '',
                 published: ''
-            },
-            name: '',
-
+            }
         }
     },
 
@@ -108,7 +106,6 @@ export default {
 
     methods: {
         async addBook() {
-            // console.warn(this.book);
             const result = await axios.post("http://localhost:3000/books", {
                 title: this.book.title,
                 author: this.book.author,
@@ -120,18 +117,14 @@ export default {
             if (result.status === 201) {
                 this.$router.push({ name: 'AdminBooks' });
             }
-            // console.warn("result", result);
         }
     },
 
     mounted() {
-        let user = localStorage.getItem('user-info');
-        // Home page only available when user is log in
-        if (!user) {
+        let admin = localStorage.getItem('role');
+        if (!admin || admin !== 'admin') {
             this.$router.push({ name: 'AdminLogin' });
-        } else {
-            this.name = JSON.parse(user).name; // fetch name of user 
-        }
+        } 
     }
 }
 </script>

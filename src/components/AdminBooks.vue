@@ -46,7 +46,6 @@
 <script>
 import axios from 'axios';
 import AdminHeader from './AdminHeader.vue';
-// import router from '@/routers';
 export default {
     name: 'AdminBooks',
 

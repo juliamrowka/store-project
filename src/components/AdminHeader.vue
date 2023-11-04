@@ -8,16 +8,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <router-link to="/admin" class="nav-link">Home</router-link>
+                    <li class="nav-item mx-2">
+                        <router-link to="/admin" active-class="active" class="nav-link">Home</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/admin/books" class="nav-link">Books</router-link>
+                    <li class="nav-item mx-2">
+                        <router-link to="/admin/books" active-class="active" class="nav-link">Books</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/admin/users" class="nav-link">Users</router-link>
+                    <li class="nav-item mx-2">
+                        <router-link to="/admin/users" active-class="active" class="nav-link">Users</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-2">
                         <a v-on:click="logout" href="#" class="nav-link">Log out</a>
                     </li>
                 </ul>
@@ -27,17 +27,9 @@
             </div>
         </div>
     </nav>
-    <!-- <div class="nav">
-        <router-link to="/admin"><i class="fi fi-rr-home"></i></router-link>
-        <router-link to="/admin/books">Books</router-link>
-        <router-link to="/admin/users">Users</router-link>
-        <a v-on:click="logout" href="#">Log out</a>
-    </div> -->
 </template>
 
 <script>
-
-//import router from '@/routers'
 
 export default {
     name: 'AdminHeader',

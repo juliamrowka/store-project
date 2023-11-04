@@ -8,13 +8,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <router-link to="/" class="nav-link">Books</router-link>
+                    <li class="nav-item mx-2">
+                        <router-link to="/" active-class="active" class="nav-link">Books</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/cart" class="nav-link">Shopping Cart</router-link>
+                    <li class="nav-item mx-2">
+                        <router-link to="/cart" active-class="active" class="nav-link">Shopping Cart</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  mx-2">
                         <a v-on:click="logout" href="#" class="nav-link">Log out</a>
                     </li>
                 </ul>

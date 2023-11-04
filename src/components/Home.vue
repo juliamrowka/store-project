@@ -4,7 +4,7 @@
     </div>
     <div v-if="name !== ''">
         <HeaderLogin :name="name" />
-    </div>    
+    </div>
     <div class="row row-cols-1 row-cols-md-auto g-4 justify-content-center">
         <div class="col" v-for="item in books" :key="item.id">
             <div class="card text-bg-light m-3 h-100" style="min-width: 14rem; max-width: 14rem;">
@@ -52,17 +52,6 @@ export default {
 
     methods: {
 
-        async loadData() {
-            let result = await axios.get("http://localhost:3000/books?published=true");
-            this.books = result.data;
-            // console.log(result);
-            let user = localStorage.getItem('user-info');
-            if (user) {
-                this.name = JSON.parse(user).name;
-                this.logged = true;
-            }
-        },
-
         async addToCart(id) {
 
             let user = localStorage.getItem('user-info');
@@ -105,7 +94,13 @@ export default {
     },
 
     async mounted() {
-        this.loadData();
+        let user = localStorage.getItem('user-info');
+        if (user) {
+            this.name = JSON.parse(user).name;
+            this.logged = true;
+        }
+        let result = await axios.get("http://localhost:3000/books?published=true");
+        this.books = result.data;
     }
 }
 </script>

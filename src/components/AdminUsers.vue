@@ -45,10 +45,6 @@ export default {
     data() {
         return {
             users: [],
-            // cart: {
-            //     userId: '',
-            //     id: ''
-            // }
         };
     },
 
