@@ -1,51 +1,79 @@
 <template>
     <AdminHeader />
-    <h1>Hello {{ name }}, Welcome on Add Book Page</h1>
-    <form class="add">
-        <div>
-            <input type="text" name="title" placeholder="Enter Title" v-model="v$.book.title.$model" />
-            <div v-for="(error, index) of v$.book.title.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+    <div class="mx-auto container-sm my-3" style="max-width: 40%;">
+        <div class="d-flex flex-row justify-content-between align-items-center border-bottom mb-4">
+            <legend class="text-primary fs-1">Add new book</legend>
+            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/admin/books"
+                    class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go back</router-link></div>
         </div>
-        <div>
-            <input type="text" name="author" placeholder="Enter Author" v-model="v$.book.author.$model" />
-            <div v-for="(error, index) of v$.book.author.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+        <!-- Title -->
+        <div class="mb-2 mt-3">
+            <label for="InputTitle1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="InputTitle1" v-model="v$.book.title.$model" />
         </div>
-        <div>
-            <input type="number" name="price" placeholder="Enter Price" v-model="v$.book.price.$model" />
-            <div v-for="(error, index) of v$.book.price.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+        <!-- Title error -->
+        <div v-for="(error, index) of v$.book.title.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
         </div>
-        <div>
-            <input type="number" name="quantity" placeholder="Enter Quantity" v-model="v$.book.quantity.$model" />
-            <div v-for="(error, index) of v$.book.quantity.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+
+        <!-- Author -->
+        <div class="mb-2 mt-3">
+            <label for="InputAuthor1" class="form-label">Author</label>
+            <input type="text" class="form-control" id="InputAuthor1" v-model="v$.book.author.$model" />
         </div>
-        <div>
-            <input type="url" name="url" placeholder="Enter URL of photo" v-model="v$.book.url.$model" />
-            <div v-for="(error, index) of v$.book.url.$errors" :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
-            </div>
+        <!-- Author error -->
+        <div v-for="(error, index) of v$.book.author.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
         </div>
-        <button :disabled="v$.$invalid" v-on:click="addBook">Add new book</button>
-    </form>
+
+        <!-- Price -->
+        <div class="mb-2 mt-3">
+            <label for="InputPrice1" class="form-label">Price</label>
+            <input type="number" class="form-control" id="InputPrice1" v-model="v$.book.price.$model" />
+        </div>
+        <!-- Price error -->
+        <div v-for="(error, index) of v$.book.price.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="mb-2 mt-3">
+            <label for="InputQuantity1" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="InputQuantity1" v-model="v$.book.quantity.$model" />
+        </div>
+        <!-- Quantity error -->
+        <div v-for="(error, index) of v$.book.quantity.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
+        </div>
+
+        <!-- URL -->
+        <div class="mb-2 mt-3">
+            <label for="InputURL1" class="form-label">URL of photo</label>
+            <input type="url" class="form-control" id="InputURL1" v-model="v$.book.url.$model" />
+        </div>
+        <!-- URL error -->
+        <div v-for="(error, index) of v$.book.url.$errors" :key="index">
+            <div class="text-danger text-center">{{ error.$message }}</div>
+        </div>        
+        
+        <!-- Submit Button -->
+        <div class="d-grid border-top mt-3">
+            <button type="submit" class="btn btn-primary mt-3" :disabled="v$.$invalid" v-on:click="addBook">Submit</button>
+        </div>
+
+    </div>
 </template>
 
 <script>
-import AdminHeader from './Header.vue';
+import AdminHeader from './AdminHeader.vue';
 import axios from 'axios';
 import useVuelidate from '@vuelidate/core';
 import { required, numeric, integer } from '@vuelidate/validators';
 export default {
     name: 'Add-page',
     components: {
-    AdminHeader
-},
+        AdminHeader
+    },
 
     setup() {
         return { v$: useVuelidate() };

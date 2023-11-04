@@ -30,7 +30,7 @@
                 </div>
                 <div class="d-flex flex-column" style="width: 20%;">
                     <div class="mx-auto" style="width: fit-content;">
-                        <div class="btn-group p-3" role="group" aria-label="Basic outlined example" style="width: 15%;">
+                        <div class="btn-group p-3" role="group" style="width: 15%;">
                             <button type="button" class="btn btn-outline-primary"
                                 v-on:click="removeFromCart(item.id)">-</button>
                             <button type="button" class="btn btn-outline-primary">{{ item.cartQuantity }}</button>

@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto container-sm my-3" style="max-width: 40%;">
-        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+        <div class="d-flex flex-row justify-content-between align-items-center border-bottom mb-4">
             <legend class="text-primary fs-1">Admin Panel</legend>
             <div class="text-end mb-2" style="width: 30% ;"><router-link to="/"
                     class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to
@@ -28,7 +28,7 @@
         </div>
         <div class="text-danger text-center" v-if="!this.correctPassword">Incorrect password or email</div>
         <!-- Submit Button -->
-        <div class="border-top mt-3">
+        <div class="d-grid border-top mt-3">
             <button type="submit" class="btn btn-primary mt-3" :disabled="v$.$invalid" v-on:click="login">Submit</button>
         </div>
     </div>

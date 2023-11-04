@@ -1,10 +1,12 @@
 <template>
     <div class="mx-auto container-sm my-3" style="max-width: 40%;">
-        <div class="d-flex flex-row justify-content-between align-items-end border-bottom mb-4">
+        <div class="d-flex flex-row justify-content-between align-items-center border-bottom mb-4">
             <legend class="text-primary fs-1">Login</legend>
-            <div class="text-end mb-2" style="width: 30% ;"><router-link to="/"
-                    class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Go to
-                    the home page</router-link></div>
+            <div class="text-end mb-2" style="width: 30% ;">
+                <router-link to="/"
+                    class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Home
+                    page</router-link>
+            </div>
         </div>
         <!-- Email -->
         <div class="mb-2 mt-3" :class="{ error: v$.email.$errors.length }">
@@ -30,7 +32,10 @@
         <div class="text-danger" v-if="this.blocked">You are blocked, please contact support</div>
         <!-- Submit Button -->
         <div class="d-flex flex-row justify-content-between align-items-center border-top mt-3">
-            <button type="submit" class="btn btn-primary" :disabled="v$.$invalid" v-on:click="login">Submit</button>
+            <div class="d-flex w-25">
+                <button type="submit" class="btn btn-primary flex-fill" :disabled="v$.$invalid"
+                    v-on:click="login">Submit</button>
+            </div>
             <div class="py-2 d-flex flex-column text-end">
                 <div class="mb-1"><router-link to="/forgot"
                         class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Forgot

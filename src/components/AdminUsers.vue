@@ -1,24 +1,39 @@
 <template>
     <AdminHeader />
-    <h1>Hello {{ name }}, Welcome on Users Page</h1>
-    <table class="users-table">
-        <tr>
-            <th>ID number</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-        <tr v-for="item in users" :key="item.id">
-            <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.email }}</td>
-            <td>
-                <button v-if="!item.blocked" v-on:click="blockUser(item.id)">Block</button>
-                <button v-if="item.blocked" v-on:click="unblockUser(item.id)">Unblock</button>
-                <img v-on:click="deleteUser(item.id)" src="../assets/delete.png" class="icon" alt="" title="Delete">
-            </td>
-        </tr>
-    </table>
+
+    <div class="container table-responsive">
+        <!-- <div class="d-grid my-4">
+            <button v-on:click="addNewBook()" class="btn btn-outline-primary">Add new book</button>
+        </div> -->
+        <table class="table table-hover border-0 align-middle border-secondary-subtle">
+            <thead>
+                <tr>
+                    <th scope="col">ID number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr v-for="item in users" :key="item.id">
+                    <td class="text-start">{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.role }}</td>
+                    <td>
+                        <div class="btn-group w-50">
+                            <button v-if="!item.blocked" v-on:click="blockUser(item.id)"
+                                class="btn btn-outline-success btn-sm">Block</button>
+                            <button v-if="item.blocked" v-on:click="unblockUser(item.id)"
+                                class="btn btn-outline-secondary btn-sm">Unblock</button>
+                            <button v-on:click="deleteUser(item.id)" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
