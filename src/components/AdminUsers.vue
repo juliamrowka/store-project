@@ -22,12 +22,12 @@
                     <td>{{ item.email }}</td>
                     <td>{{ item.role }}</td>
                     <td>
-                        <div class="btn-group w-50">
+                        <div class="d-flex gap-2 justify-content-md-between">
                             <button v-if="!item.blocked" v-on:click="blockUser(item.id)"
-                                class="btn btn-outline-success btn-sm">Block</button>
+                                class="btn btn-outline-secondary btn-sm flex-fill">Block</button>
                             <button v-if="item.blocked" v-on:click="unblockUser(item.id)"
-                                class="btn btn-outline-secondary btn-sm">Unblock</button>
-                            <button v-on:click="deleteUser(item.id)" class="btn btn-outline-danger btn-sm">Delete</button>
+                                class="btn btn-secondary btn-sm flex-fill">Unblock</button>
+                            <button v-on:click="deleteUser(item.id)" class="btn btn-outline-danger btn-sm flex-fill">Delete</button>
                         </div>
                     </td>
                 </tr>

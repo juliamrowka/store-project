@@ -17,7 +17,7 @@
             </thead>
             <tbody class="table-group-divider">
                 <tr v-for="item in books" :key="item.id">
-                    <td class="text-start">{{ item.id }}</td>
+                    <td class="text-start fw-semibold">{{ item.id }}</td>
                     <td>{{ item.title }}</td>
                     <td>{{ item.author }}</td>
                     <td>{{ item.price }} $</td>
@@ -28,13 +28,13 @@
                         <span v-if="item.quantity > 50">{{ item.quantity }}</span>
                     </td>
                     <td>
-                        <div class="btn-group">
-                            <button v-on:click="update(item.id)" class="btn btn-outline-primary btn-sm">Update</button>
+                        <div class="d-flex gap-2 justify-content-md-between">
+                            <button v-on:click="update(item.id)" class="btn btn-outline-primary btn-sm flex-fill">Update</button>
                             <button v-if="!item.published" v-on:click="publishBook(item.id)"
-                                class="btn btn-outline-success btn-sm">Publish</button>
+                                class="btn btn-success btn-sm flex-fill">Publish</button>
                             <button v-if="item.published" v-on:click="unpublishBook(item.id)"
-                                class="btn btn-outline-secondary btn-sm">Unpublish</button>
-                            <button v-on:click="deleteBook(item.id)" class="btn btn-outline-danger btn-sm">Delete</button>
+                                class="btn btn-outline-secondary btn-sm flex-fill">Unpublish</button>
+                            <button v-on:click="deleteBook(item.id)" class="btn btn-outline-danger btn-sm flex-fill">Delete</button>
                         </div>
                     </td>
                 </tr>
