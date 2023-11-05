@@ -1,0 +1,240 @@
+{
+  "users": [
+    {
+      "email": "admin@admin.com",
+      "name": "Admin",
+      "password": "admin",
+      "role": "admin",
+      "blocked": false,
+      "id": 1,
+      "books": []
+    },
+    {
+      "email": "admin2@admin.com",
+      "name": "Admin2",
+      "password": "123",
+      "role": "customer",
+      "blocked": false,
+      "id": 2
+    },
+    {
+      "email": "julia@test.com",
+      "name": "Julia",
+      "password": "qwerty123",
+      "role": "customer",
+      "blocked": false,
+      "id": 3,
+      "books": []
+    },
+    {
+      "name": "Tony",
+      "email": "tony@stark.com",
+      "password": "tony123",
+      "role": "customer",
+      "blocked": false,
+      "id": 4,
+      "books": [
+        4,
+        3,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "Bruce",
+      "email": "bruce@test.com",
+      "password": "hahaiambrucelee123",
+      "role": "customer",
+      "blocked": false,
+      "id": 5,
+      "books": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "Peter",
+      "email": "peter@peter.com",
+      "password": "iampeter",
+      "role": "customer",
+      "blocked": false,
+      "id": 6
+    },
+    {
+      "name": "Agata",
+      "email": "agata@mrowka.com",
+      "password": "kochamsiostre",
+      "role": "customer",
+      "blocked": false,
+      "id": 7
+    },
+    {
+      "name": "Heishka",
+      "email": "hello@world.com",
+      "password": "helloworld",
+      "role": "customer",
+      "blocked": true,
+      "id": 8
+    },
+    {
+      "name": "Marianna",
+      "email": "maria@nna.com",
+      "password": "marianna",
+      "role": "customer",
+      "blocked": false,
+      "id": 9
+    },
+    {
+      "name": "Agara",
+      "email": "agara@mia.com",
+      "password": "agaramia",
+      "role": "customer",
+      "blocked": false,
+      "id": 11
+    },
+    {
+      "name": "Monica",
+      "email": "monica@test.com",
+      "password": "monica",
+      "role": "customer",
+      "blocked": false,
+      "id": 12
+    },
+    {
+      "name": "Weronica",
+      "email": "weronica@test.com",
+      "password": "weronica",
+      "role": "customer",
+      "blocked": false,
+      "id": 13
+    },
+    {
+      "name": "Filo",
+      "email": "filo@chan.com",
+      "password": "filochan",
+      "role": "customer",
+      "blocked": false,
+      "id": 14
+    },
+    {
+      "name": "Raphtalia",
+      "email": "raph@talia.com",
+      "password": "raphtalia",
+      "role": "customer",
+      "blocked": false,
+      "id": 15,
+      "books": []
+    },
+    {
+      "name": "Helen",
+      "email": "helen@helen.com",
+      "password": "helenh",
+      "role": "customer",
+      "blocked": false,
+      "id": 16,
+      "books": []
+    },
+    {
+      "name": "Anastasia",
+      "email": "anastasia@test.com",
+      "password": "anastasia",
+      "role": "customer",
+      "blocked": false,
+      "id": 17,
+      "books": []
+    }
+  ],
+  "books": [
+    {
+      "title": "Nineteen Eighty-Four",
+      "author": "George Orwell",
+      "price": 14.59,
+      "quantity": 226,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/81StSOpmkjL._AC_UF894,1000_QL80_.jpg",
+      "id": 1
+    },
+    {
+      "title": "Journey to the End of the Night",
+      "author": "Louis-Ferdinand Céline",
+      "price": 20.89,
+      "quantity": 150,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/61Ldtf4aUWL._AC_UF894,1000_QL80_.jpg",
+      "id": 2
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "price": 42.99,
+      "quantity": 150,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg",
+      "id": 3
+    },
+    {
+      "title": "Lord Jim",
+      "author": "Joseph Conrad",
+      "price": 18.79,
+      "quantity": 0,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/91dLvgmOjML._AC_UF1000,1000_QL80_.jpg",
+      "id": 4
+    },
+    {
+      "title": "The Abyss",
+      "author": "Marguerite Yourcenar",
+      "price": 24.49,
+      "quantity": 50,
+      "published": true,
+      "url": "https://ia800300.us.archive.org/BookReader/BookReaderPreview.php?id=abyss___00your&subPrefix=abyss___00your&itemPath=/19/items/abyss___00your&server=ia800300.us.archive.org&page=leaf1&fail=preview&&scale=4&rotate=0",
+      "id": 5
+    },
+    {
+      "title": "The Blue Lotus",
+      "author": "Hergé",
+      "price": 15.29,
+      "quantity": 150,
+      "published": true,
+      "url": "https://cdn001.tintin.com/public/tintin/img/static/the-blue-lotus/the-blue-lotus.jpg",
+      "id": 6
+    },
+    {
+      "title": "The Trial",
+      "author": "Franz Kafka",
+      "price": 16.69,
+      "quantity": 150,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/71KmDul24wL._AC_UF1000,1000_QL80_.jpg",
+      "id": 7
+    },
+    {
+      "title": "Tropisms",
+      "author": "Nathalie Sarraute",
+      "price": 28.89,
+      "quantity": 200,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/51pISyoV1jL._AC_UF1000,1000_QL80_.jpg",
+      "id": 8
+    },
+    {
+      "title": "Ficciones",
+      "author": "Jorge Luis Borges",
+      "price": 36.99,
+      "quantity": 448,
+      "published": true,
+      "url": "https://m.media-amazon.com/images/I/818CcerTE4L._AC_UF1000,1000_QL80_.jpg",
+      "id": 9
+    },
+    {
+      "title": "The Little Prince",
+      "author": "Antoine de Saint-Exupéry",
+      "price": 29.99,
+      "quantity": 44,
+      "url": "https://m.media-amazon.com/images/I/71QKrhhMJIL._AC_UF1000,1000_QL80_.jpg",
+      "published": false,
+      "id": 10
+    }
+  ]
+}
