@@ -1,14 +1,11 @@
 <template>
     <AdminHeader />
 
-    <div class="container table-responsive">
-        <!-- <div class="d-grid my-4">
-            <button v-on:click="addNewBook()" class="btn btn-outline-primary">Add new book</button>
-        </div> -->
+    <div class="container-sm table-responsive my-4">
         <table class="table table-hover border-0 align-middle border-secondary-subtle">
             <thead>
                 <tr>
-                    <th scope="col">ID number</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
@@ -17,7 +14,7 @@
             </thead>
             <tbody class="table-group-divider">
                 <tr v-for="item in users" :key="item.id">
-                    <td class="text-start">{{ item.id }}</td>
+                    <td class="text-start fw-semibold">{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.email }}</td>
                     <td>{{ item.role }}</td>

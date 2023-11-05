@@ -1,45 +1,47 @@
 <template>
     <AdminHeader />
-    <div class="container table-responsive">
-        <div class="d-grid my-4">
+    <div class="container-sm my-4">
+        <div class="d-grid mb-4">
             <button v-on:click="addNewBook()" class="btn btn-outline-primary">Add new book</button>
         </div>
-        <table class="table table-hover border-0 align-middle border-secondary-subtle">
-            <thead>
-                <tr>
-                    <th scope="col">ID number</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr v-for="item in books" :key="item.id">
-                    <td class="text-start fw-semibold">{{ item.id }}</td>
-                    <td>{{ item.title }}</td>
-                    <td>{{ item.author }}</td>
-                    <td>{{ item.price }} $</td>
-                    <td>
-                        <span v-if="item.quantity <= 10" class="text-danger">{{ item.quantity }}</span>
-                        <span v-if="item.quantity <= 50 && item.quantity > 10" class="text-warning">{{ item.quantity
-                        }}</span>
-                        <span v-if="item.quantity > 50">{{ item.quantity }}</span>
-                    </td>
-                    <td>
-                        <div class="d-flex gap-2 justify-content-md-between">
-                            <button v-on:click="update(item.id)" class="btn btn-outline-primary btn-sm flex-fill">Update</button>
-                            <button v-if="!item.published" v-on:click="publishBook(item.id)"
-                                class="btn btn-success btn-sm flex-fill">Publish</button>
-                            <button v-if="item.published" v-on:click="unpublishBook(item.id)"
-                                class="btn btn-outline-secondary btn-sm flex-fill">Unpublish</button>
-                            <button v-on:click="deleteBook(item.id)" class="btn btn-outline-danger btn-sm flex-fill">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+       <div class="table-responsive">
+            <table class="table table table-hover border-0 align-middle border-secondary-subtle">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr v-for="item in books" :key="item.id">
+                        <td class="text-start fw-semibold">{{ item.id }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.author }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            <span v-if="item.quantity <= 10" class="text-danger">{{ item.quantity }}</span>
+                            <span v-if="item.quantity <= 50 && item.quantity > 10" class="text-warning">{{ item.quantity
+                            }}</span>
+                            <span v-if="item.quantity > 50">{{ item.quantity }}</span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2 justify-content-md-between">
+                                <button v-on:click="update(item.id)" class="btn btn-outline-primary btn-sm flex-fill">Update</button>
+                                <button v-if="!item.published" v-on:click="publishBook(item.id)"
+                                    class="btn btn-success btn-sm flex-fill">Publish</button>
+                                <button v-if="item.published" v-on:click="unpublishBook(item.id)"
+                                    class="btn btn-outline-secondary btn-sm flex-fill">Unpublish</button>
+                                <button v-on:click="deleteBook(item.id)" class="btn btn-outline-danger btn-sm flex-fill">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+       </div>
     </div>
 </template>
 

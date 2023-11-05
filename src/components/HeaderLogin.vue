@@ -1,21 +1,26 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Bookstore</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <router-link to="/" active-class="active" class="nav-link">Books</router-link>
+                    <li class="nav-item m-2">
+                        <router-link to="/" active-class="active" class="nav-link px-2">Books</router-link>
                     </li>
-                    <li class="nav-item mx-2">
-                        <router-link to="/cart" active-class="active" class="nav-link">Shopping Cart</router-link>
+                    <li class="nav-item m-2">
+                        <router-link to="/cart" active-class="active" class="nav-link position-relative px-2">Shopping Cart
+                            <span v-if="this.cartQuantity > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <div>{{ this.cartQuantity }}</div>
+                                <span class="visually-hidden">books in carts</span>
+                            </span>
+                        </router-link>
                     </li>
-                    <li class="nav-item  mx-2">
-                        <a v-on:click="logout" href="#" class="nav-link">Log out</a>
+                    <li class="nav-item m-2">
+                        <div v-on:click="logout" class="nav-link px-2">Log out</div>
                     </li>
                 </ul>
                 <span class="navbar-text">
@@ -27,9 +32,17 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     name: 'Header-page',
+
+    data() {
+        return {
+            userId: '',
+            cartQuantity: ''
+        }
+    },
+
     props: {
         name: String
     },
@@ -37,7 +50,7 @@ export default {
     methods: {
         logout() {
             localStorage.clear()
-            
+
             // console.log(this.$router.currentRoute._value.name);
             // console.log(typeof(this.$router.currentRoute._value.name));
             // console.log(this.$router.currentRoute._value.name === 'Home');
@@ -48,6 +61,16 @@ export default {
                 this.$router.push({ name: 'Home' })
             }
         },
+    },
+
+    async mounted() {
+        let user = localStorage.getItem('user-info');
+        if (user) {
+            this.userId = JSON.parse(user).id;
+            let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
+            this.cartQuantity = result.data[0].books.length;
+            console.log(this.cartQuantity);
+        }
     }
 }
 </script>

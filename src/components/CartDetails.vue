@@ -1,43 +1,58 @@
 <template>
     <HeaderLogin :name="name" />
-    <div v-if="empty" class="mx-auto" style="max-width: 50%;">
-
-        <div class="d-flex flex-column m-3">
-            <h1 class="text-body-priamry fs-3 mx-auto">Your cart is empty</h1>
-            <router-link to="/" class="mx-auto link-opacity-50-hover">Go to the home page</router-link>
-        </div>
-
-    </div>
-
-    <div v-if="!empty" class="mx-auto" style="max-width: 50%;">
-        <div class="d-flex flex-row justify-content-between align-items-center py-1">
-            <div class="d-flex flex-row justify-content-between align-items-center">
-                <div class="text-body-priamry fs-2">Cart Details</div>
-                <button type="button" class="btn btn-outline-danger m-2" v-on:click="emptyCart()">Empty the cart</button>
-            </div>
-            <div class="text-end text-body-secondary fs-3">Total price: <span class="fw-semibold">{{ totalPrice }} $</span>
+    <div class="container-sm">
+        <div v-if="empty" class="mx-auto my-4" style="max-width: 50%;">
+            <div class="d-flex flex-column">
+                <h1 class="text-body-priamry fs-3 mx-auto">Your cart is empty</h1>
+                <router-link to="/" class="mx-auto link-opacity-50-hover">Go to the home page</router-link>
             </div>
         </div>
-        <div v-for="item in cartContent" :key="item.id" class="list-group">
-            <div class="list-group-item list-group-item-action d-flex flex-row mb-3">
-                <div class="d-flex flex-column" style="width: 10%;">
-                    <img :src=item.url alt="" class="img-fluid p-8 rounded">
+
+        <div v-if="!empty" class="container mx-auto my-4">
+
+            <!-- <div class="d-flex flex-row justify-content-between align-items-center border-bottom py-1 mb-3">
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <div class="text-body-priamry fs-2">Cart Details</div>
+                    <button type="button" class="btn btn-outline-danger btn-lg m-2 p-1 pb-0 border-0" title="Empty the cart"
+                        v-on:click="emptyCart()"><i class="fi fi-rr-trash"></i></button>
                 </div>
-                <div class="d-flex flex-column px-3" style="width: 70%;">
-                    <h4 class="mb-1">{{ item.title }}</h4>
-                    <p class="mb-1">{{ item.author }}</p>
-                    <h5 class="mb-1 text-body-secondary">{{ item.price }} $</h5>
+                <div class="text-end text-body-secondary fs-3">Total price: <span class="fw-semibold">{{ totalPrice }}
+                        $</span>
                 </div>
-                <div class="d-flex flex-column" style="width: 20%;">
-                    <div class="mx-auto" style="width: fit-content;">
-                        <div class="btn-group p-3" role="group" style="width: 15%;">
-                            <button type="button" class="btn btn-outline-primary"
-                                v-on:click="removeFromCart(item.id)">-</button>
-                            <button type="button" class="btn btn-outline-primary">{{ item.cartQuantity }}</button>
-                            <button type="button" class="btn btn-outline-primary" v-on:click="addToCart(item.id)">+</button>
+            </div> -->
+
+            <div class="row border-bottom py-1 m-0 mb-3">
+                <div class="col-sm d-flex align-items-center justify-content-center justify-content-lg-start">
+                    <div class="text-body-priamry fs-2">Shopping Cart</div>
+                    <button type="button" class="btn btn-outline-danger m-1 p-1 pb-0 border-0" title="Empty the cart"
+                        v-on:click="emptyCart()"><i class="fi fi-rr-trash"></i></button>
+                </div>
+                <div class="col-sm d-flex align-items-end justify-content-center justify-content-lg-end text-body-secondary fs-3"><div>Total price:&nbsp;</div><div class="fw-semibold">{{ totalPrice }}&nbsp;$</div>
+                </div>
+            </div>
+
+            <div v-for="item in cartContent" :key="item.id" class="container-sm list-group p-0">
+                <div class="list-group-item list-group-item-action mb-3">
+                    <div class="row py-2">
+                        <div class="col-sm-2">
+                            <img :src=item.url alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col-sm-8 mb-3">
+                            <h2 class="m-1">{{ item.title }}</h2>
+                            <p class="fs-5 m-1">{{ item.author }}</p>
+                            <h5 class="m-1 text-body-secondary">{{ item.price }} $</h5>
+                        </div>
+                        <div class="col-sm-2 text-center mt-1">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary"
+                                    v-on:click="removeFromCart(item.id)">-</button>
+                                <button type="button" class="btn btn-outline-primary">{{ item.cartQuantity }}</button>
+                                <button type="button" class="btn btn-outline-primary"
+                                    v-on:click="addToCart(item.id)">+</button>
+                            </div>
+                            <h3 class="m-2 text-body-primary">{{ item.partialPrice }} $</h3>
                         </div>
                     </div>
-                    <h4 class="mb-1 text-body-primary mx-auto">{{ item.partialPrice }} $</h4>
                 </div>
             </div>
         </div>
@@ -53,7 +68,7 @@ export default {
         return {
             name: '',
             userId: '',
-            empty: false,
+            empty: true,
             cartContent: [],
             totalPrice: 0,
             cart: {
@@ -135,9 +150,10 @@ export default {
             let cart = result.data[0].books;
             if (!cart) {
                 this.empty = true;
-            } else if (cart.length <= 0){
+            } else if (cart.length <= 0) {
                 this.empty = true;
             } else {
+                this.empty = false;
                 let counts = {};
                 cart.forEach(function (x) { counts[x] = (counts[x] || 0) + 1 });
                 cart = [...new Set(cart)];
