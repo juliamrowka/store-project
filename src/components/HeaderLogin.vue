@@ -68,8 +68,13 @@ export default {
         if (user) {
             this.userId = JSON.parse(user).id;
             let result = await axios.get(`http://localhost:3000/users?id=${this.userId}`);
-            this.cartQuantity = result.data[0].books.length;
-            console.log(this.cartQuantity);
+            if (result.data[0].books) {
+                this.cartQuantity = result.data[0].books.length;
+            } else {
+                this.cartQuantity = 0;
+            }
+            
+            // console.log(this.cartQuantity);
         }
     }
 }

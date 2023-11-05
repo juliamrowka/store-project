@@ -5,7 +5,7 @@
     <div v-if="name !== ''">
         <HeaderLogin :name="name" />
     </div>
-    <div class="container-sm">
+    <div class="container-sm mb-5">
         <div class="row row-cols-1 row-cols-md-auto g-4 justify-content-center">
             <div class="col" v-for="item in books" :key="item.id">
                 <div class="card text-bg-light m-3 h-100" style="min-width: 14rem; max-width: 14rem;">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-footer d-md-flex justify-content-end align-items-center">
                         <div class="flex-fill fs-4">{{ item.price }} $</div>
-                        <button class="btn btn-outline-primary rounded" v-if="logged" v-on:click="addToCart(item.id)"
+                        <button class="btn btn-primary rounded" v-if="logged" v-on:click="addToCart(item.id)"
                             :disabled="item.quantity <= 0">Add to Cart</button>
     
                     </div>

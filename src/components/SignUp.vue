@@ -48,7 +48,7 @@
             <!-- Submit Button -->
             <div class="d-flex flex-row justify-content-between align-items-center border-top mt-3">
                 <div class="d-flex w-25">
-                    <button type="submit" class="btn btn-primary flex-fill" :disabled="v$.$invalid" v-on:click="login">Submit</button>
+                    <button type="submit" class="btn btn-primary flex-fill" :disabled="v$.$invalid" v-on:click="signUp">Submit</button>
                 </div>
                 <div class="py-2 d-flex flex-column text-end">
                     <div>Already have an account?</div>
